@@ -3,10 +3,9 @@
 # load libraries  ---------------------------------------------------------
 
 library(tidyverse)
-library(ggpubr)
-library(dplyr) #for filter and %>%  command
-library(readr) #read csv
 library(ggplot2)
+library(ggpubr)
+library(vegan)
 
 # load data ---------------------------------------------------------------
 
@@ -17,21 +16,12 @@ morph <- read_csv("morph.csv")
 
 # standardise data --------------------------------------------------------
 
-#still needs to be completed
-
 morph <- as_tibble(morph)
 
-#standard <- morph %>% 
-#  group_by(site) %>% 
- # mutate(diff_morph = morph - mean(morph, na.rm = TRUE)) %>% 
-  # mutate(standard_morph = diff_morph / sd(morph))
-
-morph_long <- morph %>% 
-  gather(key = variable, value = value, -date, -site, -depth, -ind, -fertile) %>% 
-  group_by(date, site, depth, ind, fertile) 
+sites <- data.frame(unique(morph$site))
 
 stand.morph <- morph %>%
-  group_by(site) %>%    #not working 
+  group_by(site) %>%     # not working 
   summarise(mn_fr_mass = mean(frond_mass), 
             sd_fr_mass = sd(frond_mass),
             mn_pri_len = mean(primary_length),
@@ -53,79 +43,50 @@ stand.morph <- morph %>%
             mn_total_len = mean(total_length), 
             sd_total_len = sd(total_length))
 
-#n1 - standardization ((x-mean)/sd)
-#mutate(var = (var - mean(var))/sd(var))
-#zVar <- (myVar - mean(myVar)) / sd(myVar)
-
-zVar <- (df_num - mean(df_num)) / sd(df_num)
-
-#create df with non numerical cols
-df_char <- morph %>% 
-  select(date:fertile)
-
-#create df with numerical variables 
-df_num <- morph %>% 
- select(frond_mass:stipe_circ, total_length)
-
-
-morph_z <- ave(morph$frond_mass, morph$primary_length, morph$primary_width, na.rm = TRUE)
-
-
-
-
-library(plyr)
-#dat <- ddply(morph, .(frond_mass), summarize, z_score = scale(primary_length))
-
 
 m1 <- dplyr::select(stand.morph, mn_fr_mass, sd_fr_mass, mn_pri_len, sd_pri_len, mn_pri_wid, sd_pri_wid, 
                     mn_fr_len, sd_fr_len, mn_st_mass, sd_st_mass, mn_st_len, sd_st_len, 
                     mn_st_circ, sd_st_circ,mn_tufts, sd_tufts, mn_epi_len, sd_epi_len, mn_total_len, sd_total_len)
 
-library(vegan)
 #calculate z-scores 
-m1 <- decostand(m1, method = "standardize")
+z_morph <- decostand(m1, method = "standardize")
 
+#combine z scores with sites 
+z_morph1 <- cbind(sites, z_morph)
 
+# visualising data --------------------------------------------------------
 
-
-
-
-library(standardize)
-standardize(morph)
-
-
-unique(morph$site)
-
-
-
-
-#morph$ind = as.numeric(morph$ind) #needed? 
 
 # convert wide data to long data 
-morph_long <- morph %>% 
-  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
+morph_long <- z_morph1 %>% 
+  gather(key = "variable", value = "value", - unique.morph.site.)
 
 # visualising data 
-ggplot(data = morph_long, aes(x = variable, y = value, fill = site)) +
+ggplot(data = morph_long, aes(x = variable, y = value)) + #fill = unique.morph.site. 
   geom_boxplot() +
   coord_flip()
 
 # facet wrap main--------------------------------------------------------------
 
 #length
-ggplot(morph, aes(x = stipe_length, y = frond_length)) + 
-  geom_point(aes(colour = site)) +
+ggplot(z_morph1, aes(x = mn_st_len, y = mn_fr_len)) + 
+  geom_point(aes(colour = unique.morph.site.)) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
-  facet_wrap(~site)+
-  labs(x = "Stipe Length (cm)", y = "Frond Length (cm)")
+  #facet_wrap(~unique.morph.site.)+
+  labs(x = "Mean Stipe Length (cm)", y = "Mean Frond Length (cm)")
 
 #primary blade
-ggplot(morph, aes(x = primary_length, y = primary_width)) + 
-  geom_point(aes(colour = site)) +
+#ggplot(morph, aes(x = primary_length, y = primary_width)) + 
+# geom_point(aes(colour = site)) +
+#  geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
+# facet_wrap(~site)+
+# labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
+
+ggplot(z_morph1, aes(x = mn_pri_len, y = mn_pri_wid)) + 
+  geom_point(aes(colour = unique.morph.site.)) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
-  facet_wrap(~site)+
-  labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
-#remove yzer outlier/ set axis 
+  #facet_wrap(~unique.morph.site.)+
+  labs(x = "Mean Primary Blade Length (cm)", y = "Mean Primary Blade Width (cm)")
 
 # graph -------------------------------------------------------------------
 
@@ -143,29 +104,20 @@ ggplot(morph, aes(x = primary_length, y = primary_width, colour = site, group = 
 
 # means -------------------------------------------------------------------
 
-morph1 <- morph %>% 
-  group_by(site) %>% 
-  summarise(mn_st_len = mean(stipe_length),
-            mn_fr_len = mean(frond_length),
-            mn_fr_mass = mean(frond_mass),
-            mn_st_mass = mean(stipe_mass),
-            mn_pr_len = mean(primary_length),
-            mn_pr_width = mean(primary_width))
-
-morph1
+stand.morph
   
 # lollipop graph
 
-ggplot(morph1, aes(y = mn_fr_len, x = mn_st_len)) +
+ggplot(stand.morph, aes(y = mn_fr_len, x = mn_st_len)) +
   geom_col(aes(fill = site)) +
   geom_point(aes(colour = site), shape = 21, fill = "Khaki", size = 5)
 
 # length 
-ggplot(morph1, aes(y = mn_fr_len, x = mn_st_len)) +
+ggplot(stand.morph, aes(y = mn_fr_len, x = mn_st_len)) +
   geom_point(aes(colour = site))
 
 # mass
-ggplot(morph1, aes(x = mn_st_mass, y = mn_fr_mass)) +
+ggplot(stand.morph, aes(x = mn_st_mass, y = mn_fr_mass)) +
   geom_point(aes(colour = site))
 
 # primary blade
@@ -193,7 +145,7 @@ morphy_sub <- morphy_long %>%
 
 # then create a new figure
 ggplot(data = morphy_sub, aes(x = variable, y = value, fill = site)) +
-  geom_boxplot() +
+  geom_boxplot(notch = TRUE) +
   coord_flip() +
   labs(y = "Stipe length (cm)", x = "") +
   theme(axis.text.y = element_blank(),
