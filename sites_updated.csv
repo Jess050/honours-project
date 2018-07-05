@@ -1,8 +1,8 @@
-site ;long;lat
-St James ;18.459073;-34.118881
-Oudekraal;18.346194;-33.984972
-Bakoven;18.375025;-33.955275
-Yzerfontein;18.147258;-33.353570
-Miller`s_A;18.475089;-34.233606
-Miller`s_B;18.474855;-34.234379
-Miller`s_C;18.476115;-34.231768
+region;site ;long;lat
+false_bay;St James ;18.459073;-34.118881
+west_coast;Oudekraal;18.346194;-33.984972
+west_coast;Bakoven;18.375025;-33.955275
+west_coast;Yzerfontein;18.147258;-33.353570
+false_bay;Miller`s_A;18.475089;-34.233606
+false_bay;Miller`s_B;18.474855;-34.234379
+false_bay;Miller`s_C;18.476115;-34.231768
