@@ -13,13 +13,19 @@ library(vegan)
 
 morph <- read_csv("morph.csv")
 
-
 # standardise data --------------------------------------------------------
 
 morph <- as_tibble(morph)
 
 sites <- data.frame(unique(morph$site))
 
+false_bay_sites <- sites %>% 
+  slice(c(1,6:8))
+
+west_coast_sites <- sites %>% 
+  slice(c(2:5))
+
+# standardize data for statistical analysis
 stand.morph <- morph %>%
   group_by(site) %>%     # not working 
   summarise(mn_fr_mass = mean(frond_mass), 
@@ -60,6 +66,7 @@ z_morph1 <- cbind(sites, z_morph)
 # convert wide data to long data 
 morph_long <- z_morph1 %>% 
   gather(key = "variable", value = "value", - unique.morph.site.)
+
 
 # visualising data 
 ggplot(data = morph_long, aes(x = variable, y = value)) + #fill = unique.morph.site. 
@@ -121,7 +128,7 @@ ggplot(stand.morph, aes(x = mn_st_mass, y = mn_fr_mass)) +
   geom_point(aes(colour = site))
 
 # primary blade
-ggplot(morph1, aes(x = mn_pr_len, y = mn_pr_width)) +
+ggplot(stand.morph, aes(x = mn_pri_len, y = mn_pri_wid)) +
   geom_point(aes(colour = site))
 
 # t-test ------------------------------------------------------------------
@@ -202,8 +209,8 @@ morph$length <- as.numeric(cut((morph$stipe_length + morph$frond_length), breaks
 
 # run a Spearman test 
 cor.test(morph$total_length, morph$stipe_circ, method = "spearman")
-# rho value = 
-# p- value =   = (not)random, (no)sig diff
+# rho value = 0.3868971
+# p- value = 0.0001276  = (not)random, (no)sig diff
 # warning = little samples and range of ranking 
 
 
@@ -221,9 +228,9 @@ morph_norm
 #primary length, frond length and total length are not normal
 
 cor.test(morph$primary_length, morph$primary_width, method = "kendall")
-# z value = 
-# tau = 
-# p = 
+# z value = 0.32067
+# tau = 0.02379201
+# p = 0.7485
 
 
 # Visualise all the things  -----------------------------------------------
