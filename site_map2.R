@@ -1,10 +1,10 @@
 # Site map 
 # Jesse 
 # July 2018 
+# spatial coordinates of sites 
 
 
 # load libraries  ---------------------------------------------------------
-
 
 library(readr)
 library(tidyverse)
@@ -15,15 +15,15 @@ library(ggmap)
 
 # load data ---------------------------------------------------------------
 
-site_list <- read.csv("sites_updated.csv", sep=";")
+site_list <- read.csv("D:/honours/honours-project/data/sites_updated.csv", sep=";")
 
 # slice "selects rows" as select "selects columns"
 
 false_bay_sites <- site_list %>% 
-  slice(c(1,6:8))
+  slice(c(1,5:7))
 
 west_coast_sites <- site_list %>% 
-  slice(c(2:5))
+  slice(c(2:4,8:10))
 
 # site_list %>% 
 #   filter(region)
