@@ -7,15 +7,25 @@ library(ggpubr)
 library(dplyr) #for filter and %>%  command
 library(readr) #read csv
 library(ggplot2)
+library(vegan)
 
 # load data ---------------------------------------------------------------
 
 #loading data about the morphometric properties of Ecklonia maxima 
 
-morph <- read_csv("morph.csv")
+morph <- read_csv("D:/honours/honours-project/data/morph_update.csv")
 
 
 # standardise data --------------------------------------------------------
+
+morph.std <- morph %>% 
+  select(-date, -site, -depth, -ind, -fertile, -epi_length)
+
+
+morph.stand <- decostand(morph.std, method = "standardize")
+
+
+#xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #still needs to be completed
 
@@ -30,8 +40,8 @@ morph_long <- morph %>%
   gather(key = variable, value = value, -date, -site, -depth, -ind, -fertile) %>% 
   group_by(date, site, depth, ind, fertile) 
 
-stand.morph <- morph %>%
-  group_by(site) %>%    #not working 
+sum.morph <- morph %>%
+  group_by(as.factor(site)) %>%    #not working 
   summarise(mn_fr_mass = mean(frond_mass), 
             sd_fr_mass = sd(frond_mass),
             mn_pri_len = mean(primary_length),
@@ -81,11 +91,9 @@ m1 <- dplyr::select(stand.morph, mn_fr_mass, sd_fr_mass, mn_pri_len, sd_pri_len,
                     mn_fr_len, sd_fr_len, mn_st_mass, sd_st_mass, mn_st_len, sd_st_len, 
                     mn_st_circ, sd_st_circ,mn_tufts, sd_tufts, mn_epi_len, sd_epi_len, mn_total_len, sd_total_len)
 
-library(vegan)
+
 #calculate z-scores 
 m1 <- decostand(m1, method = "standardize")
-
-
 
 
 
@@ -108,20 +116,21 @@ morph_long <- morph %>%
 # visualising data 
 ggplot(data = morph_long, aes(x = variable, y = value, fill = site)) +
   geom_boxplot() +
-  coord_flip()
+  coord_flip() +
+  facet_wrap( ~variable, scales = "free" )
 
 # facet wrap main--------------------------------------------------------------
 
 #length
 ggplot(morph, aes(x = stipe_length, y = frond_length)) + 
-  geom_point(aes(colour = site)) +
+  geom_point(aes(colour = site), show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
   facet_wrap(~site)+
   labs(x = "Stipe Length (cm)", y = "Frond Length (cm)")
 
 #primary blade
 ggplot(morph, aes(x = primary_length, y = primary_width)) + 
-  geom_point(aes(colour = site)) +
+  geom_point(aes(colour = site), show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
   facet_wrap(~site)+
   labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
@@ -175,11 +184,11 @@ ggplot(morph1, aes(x = mn_pr_len, y = mn_pr_width)) +
 # t-test ------------------------------------------------------------------
 # on two sites 
 # load data  
-morphy <- read_csv("morph.csv")
+morph_update <- read_csv("data/morph_update.csv")
 
 
 # convert wide data to long data 
-morphy_long <- morphy %>% 
+morphy_long <- morph_update %>% 
   gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
 
 # visualising data 
@@ -191,13 +200,6 @@ ggplot(data = morphy_long, aes(x = variable, y = value, fill = site)) +
 morphy_sub <- morphy_long %>% 
   filter(variable == "stipe_length") # & frond length
 
-# then create a new figure
-ggplot(data = morphy_sub, aes(x = variable, y = value, fill = site)) +
-  geom_boxplot() +
-  coord_flip() +
-  labs(y = "Stipe length (cm)", x = "") +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
 
 # checking assumptions 
 morphy_sub %>% 
@@ -292,3 +294,4 @@ ggplot(melt.morph, aes(x = Var1, y = Var2, fill = value)) +
   geom_tile() +
   scale_fill_gradient(low = "white", high = "Indianred", name = "Pearson Correlation") +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 12, hjust = 1))
+
