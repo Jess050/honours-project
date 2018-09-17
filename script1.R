@@ -13,7 +13,8 @@ library(vegan)
 
 #loading data about the morphometric properties of Ecklonia maxima 
 
-morph <- read_csv("D:/honours/honours-project/data/morph_update.csv")
+morph <- as.tibble(read_csv("D:/honours/honours-project/data/morph_update.csv")[, -14])
+sites <- read_csv("data/sites_updated.csv")
 
 
 # standardise data --------------------------------------------------------
@@ -142,5 +143,21 @@ ggplot(data = morph_long, aes(x = variable, y = value, fill = depth)) +
   facet_wrap(site ~ depth, scales = "free") +
   theme_classic()
 
+# desriptive statistics of env data
+
+na.omit(SACTN_monthly_v4.2)
+
+summary(SACTN_monthly_v4.2)
+
+ggplot(data = SACTN_monthly_v4.2, aes(x = date, y = temp)) +
+  geom_boxplot()
 
 
+# i.	Calculate an association matrix for the species data. Show the code used to produce the calculation. (1)
+# ii.	Briefly describe the meaning of the data represented in the association matrix, make use of specific references to cells within the matrix in your explanation. (4)
+
+# i)
+.t <- t(SACTN_monthly_v4.2)
+temp.t[1:20, 1:20]
+temp.t.S7 <- vegdist(temp.t, binary = TRUE)
+round(as.matrix(temp.t.S7)[1:15, 1:15], 2)

@@ -1,4 +1,4 @@
-#results 
+#results
 
 # load libraries  ---------------------------------------------------------
 
@@ -9,7 +9,7 @@ library(vegan)
 
 # load data ---------------------------------------------------------------
 
-#loading data about the morphometric properties of Ecklonia maxima 
+#loading data about the morphometric properties of Ecklonia maxima
 
 morph <- read_csv("morph.csv")
 
@@ -17,7 +17,15 @@ morph <- read_csv("morph.csv")
 
 morph <- as_tibble(morph)
 
+<<<<<<< HEAD:results1.R
+standard <- morph %>%
+  group_by(site) %>%
+  mutate(diff_morph = morph - mean(morph, na.rm = TRUE)) %>%
+  mutate(standard_morph = diff_morph / sd(morph))
+||||||| merged common ancestors
+=======
 sites <- data.frame(unique(morph$site))
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
 false_bay_sites <- sites %>% 
   slice(c(1,6:8))
@@ -62,27 +70,66 @@ z_morph1 <- cbind(sites, z_morph)
 
 # visualising data --------------------------------------------------------
 
+<<<<<<< HEAD:results1.R
+#morph$ind = as.numeric(morph$ind) #needed?
+||||||| merged common ancestors
+#morph$ind = as.numeric(morph$ind) #needed? 
+=======
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
+<<<<<<< HEAD:results1.R
+# convert wide data to long data
+morph_long <- morph %>%
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
+||||||| merged common ancestors
+# convert wide data to long data 
+morph_long <- morph %>% 
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
+=======
 # convert wide data to long data 
 morph_long <- z_morph1 %>% 
   gather(key = "variable", value = "value", - unique.morph.site.)
 
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
+<<<<<<< HEAD:results1.R
+# visualising data
+ggplot(data = morph_long, aes(x = variable, y = value, fill = site)) +
+||||||| merged common ancestors
+# visualising data 
+ggplot(data = morph_long, aes(x = variable, y = value, fill = site)) +
+=======
 # visualising data 
 ggplot(data = morph_long, aes(x = variable, y = value)) + #fill = unique.morph.site. 
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
   geom_boxplot() +
   coord_flip()
 
 # facet wrap main--------------------------------------------------------------
 
 #length
+<<<<<<< HEAD:results1.R
+ggplot(morph, aes(x = stipe_length, y = frond_length)) +
+  geom_point(aes(colour = site)) +
+||||||| merged common ancestors
+ggplot(morph, aes(x = stipe_length, y = frond_length)) + 
+  geom_point(aes(colour = site)) +
+=======
 ggplot(z_morph1, aes(x = mn_st_len, y = mn_fr_len)) + 
   geom_point(aes(colour = unique.morph.site.)) +
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
   #facet_wrap(~unique.morph.site.)+
   labs(x = "Mean Stipe Length (cm)", y = "Mean Frond Length (cm)")
 
 #primary blade
+<<<<<<< HEAD:results1.R
+ggplot(morph, aes(x = primary_length, y = primary_width)) +
+  geom_point(aes(colour = site)) +
+||||||| merged common ancestors
+ggplot(morph, aes(x = primary_length, y = primary_width)) + 
+  geom_point(aes(colour = site)) +
+=======
 #ggplot(morph, aes(x = primary_length, y = primary_width)) + 
 # geom_point(aes(colour = site)) +
 #  geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
@@ -91,18 +138,29 @@ ggplot(z_morph1, aes(x = mn_st_len, y = mn_fr_len)) +
 
 ggplot(z_morph1, aes(x = mn_pri_len, y = mn_pri_wid)) + 
   geom_point(aes(colour = unique.morph.site.)) +
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
   geom_smooth(method = "lm", se = FALSE, colour = "grey35") +
+<<<<<<< HEAD:results1.R
+  facet_wrap(~site)+
+  labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
+#remove yzer outlier/ set axis
+||||||| merged common ancestors
+  facet_wrap(~site)+
+  labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
+#remove yzer outlier/ set axis 
+=======
   #facet_wrap(~unique.morph.site.)+
   labs(x = "Mean Primary Blade Length (cm)", y = "Mean Primary Blade Width (cm)")
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
 # graph -------------------------------------------------------------------
 
-ggplot(morph, aes(x = stipe_length, y = frond_length, colour = site, group = site)) + 
+ggplot(morph, aes(x = stipe_length, y = frond_length, colour = site, group = site)) +
   geom_point() +
   geom_smooth(method = "lm", se = TRUE) +
   labs(x = "Stipe Length (cm)", y = "Frond Length (cm)")
 
-ggplot(morph, aes(x = primary_length, y = primary_width, colour = site, group = site)) + 
+ggplot(morph, aes(x = primary_length, y = primary_width, colour = site, group = site)) +
   geom_point() +
   geom_smooth(method = "lm", se = TRUE) +
   labs(x = "Primary Blade Length (cm)", y = "Primary Blade Width (cm)")
@@ -111,16 +169,50 @@ ggplot(morph, aes(x = primary_length, y = primary_width, colour = site, group = 
 
 # means -------------------------------------------------------------------
 
+<<<<<<< HEAD:results1.R
+morph1 <- morph %>%
+  group_by(site) %>%
+  summarise(mn_st_len = mean(stipe_length),
+            mn_fr_len = mean(frond_length),
+            mn_fr_mass = mean(frond_mass),
+            mn_st_mass = mean(stipe_mass),
+            mn_pr_len = mean(primary_length),
+            mn_pr_width = mean(primary_width))
+
+morph1
+
+||||||| merged common ancestors
+morph1 <- morph %>% 
+  group_by(site) %>% 
+  summarise(mn_st_len = mean(stipe_length),
+            mn_fr_len = mean(frond_length),
+            mn_fr_mass = mean(frond_mass),
+            mn_st_mass = mean(stipe_mass),
+            mn_pr_len = mean(primary_length),
+            mn_pr_width = mean(primary_width))
+
+morph1
+  
+=======
 stand.morph
   
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 # lollipop graph
 
 ggplot(stand.morph, aes(y = mn_fr_len, x = mn_st_len)) +
   geom_col(aes(fill = site)) +
   geom_point(aes(colour = site), shape = 21, fill = "Khaki", size = 5)
 
+<<<<<<< HEAD:results1.R
+# length
+ggplot(morph1, aes(y = mn_fr_len, x = mn_st_len)) +
+||||||| merged common ancestors
+# length 
+ggplot(morph1, aes(y = mn_fr_len, x = mn_st_len)) +
+=======
 # length 
 ggplot(stand.morph, aes(y = mn_fr_len, x = mn_st_len)) +
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
   geom_point(aes(colour = site))
 
 # mass
@@ -132,22 +224,22 @@ ggplot(stand.morph, aes(x = mn_pri_len, y = mn_pri_wid)) +
   geom_point(aes(colour = site))
 
 # t-test ------------------------------------------------------------------
-# on two sites 
-# load data  
+# on two sites
+# load data
 morphy <- read_csv("morph.csv")
 
 
-# convert wide data to long data 
-morphy_long <- morphy %>% 
+# convert wide data to long data
+morphy_long <- morphy %>%
   gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
 
-# visualising data 
+# visualising data
 ggplot(data = morphy_long, aes(x = variable, y = value, fill = site)) +
   geom_boxplot() +
   coord_flip()
 
 # filter the data
-morphy_sub <- morphy_long %>% 
+morphy_sub <- morphy_long %>%
   filter(variable == "stipe_length") # & frond length
 
 # then create a new figure
@@ -158,15 +250,15 @@ ggplot(data = morphy_sub, aes(x = variable, y = value, fill = site)) +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 
-# checking assumptions 
-morphy_sub %>% 
-  group_by(site) %>% 
+# checking assumptions
+morphy_sub %>%
+  group_by(site) %>%
   summarise(stipe_length_var = var(value)[1],
             stipe_length_norm = as.numeric(shapiro.test(value)[2]))
 
 #running an analysis
 
-# traditional output 
+# traditional output
 # t.test(value ~ site, data = morphy_sub, var.equal = TRUE, alternative = "greater")
 #(reduce to 2 levels)
 
@@ -180,21 +272,21 @@ library(corrplot)
 cor.test(morph$frond_length, morph$stipe_length)
 # p-value:  chance data is random
 # CI dont cross over 0 = not significant , cross over = significant
-# report Pearson coeff = 
+# report Pearson coeff =
 
 
-# visualise data 
+# visualise data
 ggplot(data = morph, aes(x = frond_length, y = stipe_length)) +
   geom_point()
 
 
 # run multiple correlations at once  --------------------------------------
 
-morph_sub <- morph %>% 
+morph_sub <- morph %>%
   #select(-species, - site, - ID)
   select(frond_mass:total_length, -tufts, -epi_length)
 
-# just produces cor coefficients for whole dataset  
+# just produces cor coefficients for whole dataset
 morph_cor <- cor(morph_sub)
 
 morph_cor
@@ -205,32 +297,52 @@ morph_cor
 # create ordinal data
 morph$length <- as.numeric(cut((morph$stipe_length + morph$frond_length), breaks = 3))
 # size classes (breaks = 3)
-# not really neccessary 
+# not really neccessary
 
-# run a Spearman test 
+# run a Spearman test
 cor.test(morph$total_length, morph$stipe_circ, method = "spearman")
+<<<<<<< HEAD:results1.R
+# rho value =
+# p- value =   = (not)random, (no)sig diff
+# warning = little samples and range of ranking
+||||||| merged common ancestors
+# rho value = 
+# p- value =   = (not)random, (no)sig diff
+# warning = little samples and range of ranking 
+=======
 # rho value = 0.3868971
 # p- value = 0.0001276  = (not)random, (no)sig diff
 # warning = little samples and range of ranking 
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
 
 # Kendall rank  -----------------------------------------------------------
-# not normal data 
+# not normal data
 
 # test for normlity -------------------------------------------------------
 
-morph_norm <- morph_sub %>% 
-  gather(key = "variable") %>% 
-  group_by(variable) %>% 
+morph_norm <- morph_sub %>%
+  gather(key = "variable") %>%
+  group_by(variable) %>%
   summarise(variable_norm = as.numeric(shapiro.test(value)[2]))
 
 morph_norm
 #primary length, frond length and total length are not normal
 
 cor.test(morph$primary_length, morph$primary_width, method = "kendall")
+<<<<<<< HEAD:results1.R
+# z value =
+# tau =
+# p =
+||||||| merged common ancestors
+# z value = 
+# tau = 
+# p = 
+=======
 # z value = 0.32067
 # tau = 0.02379201
 # p = 0.7485
+>>>>>>> 51f00b8347192e883beb6aae9272d4aff96fdb43:extra/results2.R
 
 
 # Visualise all the things  -----------------------------------------------
@@ -240,8 +352,8 @@ library(corrplot)
 morph_pearson <- cor(morph_sub)
 
 corrplot(morph_pearson, method = "circle")
-# try in ggplot 
-# positive or negative influence size of dots 
+# try in ggplot
+# positive or negative influence size of dots
 
 library(reshape2)
 
