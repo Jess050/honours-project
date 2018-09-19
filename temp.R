@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 # analysing temperature data 
+=======
+# find the mean of all the temps.
+# subtract it from the actual temp
+# Plot it on a graph
+# find three overlapping sites in the west,east and south coast
+# center around zero
+>>>>>>> 46fed79c4663b89324519f23bed69365cea9e34b
 
 
 # load libraries ----------------------------------------------------------
