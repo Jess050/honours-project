@@ -11,6 +11,7 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 library(ggmap)
+library(ggpubr)
 
 
 # load data ---------------------------------------------------------------
@@ -30,8 +31,8 @@ west_coast_sites <- site_list %>%
 
 # western cape ------------------------------------------------------------
 # 
-# western_cape <- get_map(location = c(lon = 18.4731263, lat = -33.4358028), 
-#                         zoom = 8, maptype = 'satellite')
+#western_cape <- get_map(location = c(lon = 18.4731263, lat = -33.4358028), 
+#                       zoom = 8, maptype = 'satellite')
 # 
 # ggmap(western_cape)
 

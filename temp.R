@@ -92,25 +92,30 @@ cols11 <- c("#004dcd", "#0068db", "#007ddb", "#008dcf", "#009bbc",
 
 site_list <- read.csv("D:/honours/honours-project/data/sites_updated.csv", sep=";")
 
-# loca <- site_list %>% 
-#   select(2,4:7,10:13)
-#   
-# a<- site_list[2,]
-# b <- loca[3:6]
-# c <- b[9:112]
-
-
 # select the required sites, merge long and lat with temperature of those sites 
+
+# remove sites and temperatures 
+new <- mean %>% 
+  select(site, mn.temp)
+
+# replicate sites from temp data to nearest sites in site_list 
+ddd <- rbind(new, new[1:6, ])[-12,][-7,]
+newest <- rbind(ddd, new[2:4,])
+
+# merge temp to site list 
+merge <- merge(newest, site_list, by = "site")
+# problem???
+
 # plot on map of western cape 
 
-ggplot(data = south_africa_coast, aes(x = lon, y = lat)) +
-  geom_raster(data = sst, aes(fill = bins)) +   
-  geom_polygon(colour = "black", fill = "grey70", aes(group = group)) +
-  geom_path(data = sa_provinces, aes(group = group)) +
-  #geom_tile(data = rast_annual, aes(x = lon, y = lat, fill = bins),
-            # colour = "white", size = 0.1) + # The coastal temperature values
-  scale_fill_manual("Temp. (°C)", values = cols11) +
-  coord_equal(xlim = c(17, 24), ylim = c(-36, -30), expand = 0)
+# ggplot(data = south_africa_coast, aes(x = lon, y = lat)) +
+#   geom_raster(data = sst, aes(fill = bins)) +   
+#   geom_polygon(colour = "black", fill = "grey70", aes(group = group)) +
+#   geom_path(data = sa_provinces, aes(group = group)) +
+#   #geom_tile(data = rast_annual, aes(x = lon, y = lat, fill = bins),
+#             # colour = "white", size = 0.1) + # The coastal temperature values
+#   scale_fill_manual("Temp. (°C)", values = cols11) +
+#   coord_equal(xlim = c(17, 24), ylim = c(-36, -30), expand = 0)
 
 # using too many datasets? 
 
