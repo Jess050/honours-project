@@ -20,7 +20,7 @@ morph <- as.tibble(read_csv("D:/honours/honours-project/data/morph_update.csv")[
 
 # create numerical df to be standardized 
 morph.std <- morph %>% 
-  select(-date, -site, -depth, -ind, -fertile) %>% 
+  select(-date, -site, -depth, -ind, -fertile) 
 
 morph.stand <- decostand(morph.std, method = "standardize")
 
@@ -227,7 +227,13 @@ ggplot(data = kb, aes(x = site, y = value)) +
 
 # plot Miller's Point 
 
-mp <-  comb_long[c(1:11, 76:114),]
+mp_deep <- comb_long %>% 
+  filter(site == "Miller's Point")
+
+mp_shallow <- comb_long %>% 
+  filter(date == "04-05-2018")
+
+mp <-  rbind(mp_deep, mp_shallow)
 
 ggplot(data = mp, aes(x = site, y = value)) +
   geom_boxplot(aes(colour = depth)) +
