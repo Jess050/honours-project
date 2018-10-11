@@ -16,15 +16,15 @@ library(ggpubr)
 
 # load data ---------------------------------------------------------------
 
-site_list <- read.csv("D:/honours/honours-project/data/sites_updated.csv", sep=";")
+site_list <- read.csv("D:/honours/honours-project/data/sites_fin.csv", sep=";")
 
 # slice "selects rows" as select "selects columns"
 
 false_bay_sites <- site_list %>% 
-  slice(c(1,5:7,11:13))
+  slice(c(1,5:7,11:15))
 
 west_coast_sites <- site_list %>% 
-  slice(c(2:4,8:10))
+  slice(c(2:4,8:10,16))
 
 # site_list %>% 
 #   filter(region)
@@ -47,11 +47,11 @@ wc1 <- ggmap(cape_point) +
 
 wc2 <- wc1 +
   geom_text(data = false_bay_sites,
-            aes(long , lat , label = site), 
+            aes(long, lat, label = site), 
             hjust = 0, vjust = 0.7, 
             size = 4, colour = "white") + 
   geom_text(data = west_coast_sites,
-            aes(long , lat , label = site), 
+            aes(long, lat, label = site), 
             hjust = 1.05, vjust = 0.7, 
             size = 4, colour = "white") +
   annotate("text", label = "False Bay", 
@@ -68,26 +68,26 @@ wc2
 # Yzerfontein -------------------------------------------------------------
 
 # yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
-#                        zoom = 10, maptype = 'satellite')
-# 
+#                         zoom = 10, maptype = 'satellite')
+#  
 # ggmap(yzerfontein)
-# 
+#  
 # yzer1 <- ggmap(yzerfontein) +
 #   geom_point(data = site_list, aes(x = lon , y = lat ), 
-#              colour = "red", size =  2.5) +
-#   labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein") 
-# 
-# yzer2 <- yzer1 +
-#   # geom_text(data = site_list,
-#   #           aes(lon , lat , label = site),
-#   #           hjust = 0.5, vjust = -1,
-#   #           size = 4, colour = "white") +
-#   annotate("text", label = "18.15°E, -33.35°S", 
-#            x = 18.14726 , y = -33.35357, 
-#            size = 3, colour = "salmon") +
-#   theme_void() +
-#   theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
-#   coord_cartesian()
-# 
-# yzer2
+#               colour = "red", size =  2.5) +
+#    labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein") 
+#  
+#  yzer2 <- yzer1 +
+#     geom_text(data = site_list,
+#               aes(lon , lat , label = site),
+#               hjust = 0.5, vjust = -1,
+#               size = 4, colour = "white") +
+#    annotate("text", label = "18.15°E, -33.35°S", 
+#             x = 18.14726 , y = -33.35357, 
+#             size = 3, colour = "salmon") +
+#    theme_void() +
+#    theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
+#    coord_cartesian()
+#  
+#  yzer2
 

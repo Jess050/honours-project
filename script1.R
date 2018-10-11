@@ -165,7 +165,7 @@ ggplot(data = comp_long, aes(x = site, y = value)) +
 # quite complex for the formats of morph_updated and eck_morph to coincide
 
 # load data with required sites 
-deep <- read_csv("data/trial.csv")[,-15]
+deep <- read_csv("data/trial.csv")
 
 df.deep <- deep %>% 
   select(date:fertile)
@@ -190,12 +190,18 @@ comb_long <- combine %>%
 # 
 # sites7 <- c( "Kalk_Bay", "Oudekraal","Kommetjie", "Miller's Point", "Kalk Bay", "Soetwater", "Miller`s_A", "Miller's_B", "Miller`s_C")
 
-# remove Kalk Bay 
-rm.kb <- combine[c(-11:-24, -140:-179),]
+# remove Kalk Bay
+rm.kb <- combine[c(-12:-25, -152:-192),]
 
-site_long <- rm.kb %>%
+# remove millers point 
+
+rm.mp <- rm.kb[c(-1:-11, -73:-114 ),]
+
+
+site_long <- rm.mp %>%
   group_by(site) %>% 
-  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile) 
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)  
+
 
 ggplot(data = site_long, aes(x = site, y = value)) +
   geom_boxplot(aes(colour = depth)) +
