@@ -31,7 +31,7 @@ west_coast_sites <- site_list %>%
 
 # western cape ------------------------------------------------------------
 # 
-#western_cape <- get_map(location = c(lon = 18.4731263, lat = -33.4358028), 
+# western_cape <- get_map(location = c(lon = 18.4731263, lat = -33.4358028),
 #                       zoom = 8, maptype = 'satellite')
 # 
 # ggmap(western_cape)
@@ -40,12 +40,12 @@ load("data/cape_point.RData")
 
 ggmap(cape_point)
 
-wc1 <- ggmap(cape_point) +
+cp1 <- ggmap(cape_point) +
   geom_point(data = site_list, aes(x = long , y = lat ), 
              colour = "red", size =  2.5) +
   labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Site Map") 
 
-wc2 <- wc1 +
+cp2 <- cp1 +
   geom_text(data = false_bay_sites,
             aes(long, lat, label = site), 
             hjust = 0, vjust = 0.7, 
@@ -63,31 +63,41 @@ wc2 <- wc1 +
   theme_bw()+
   coord_cartesian()
 
-wc2
+cp2
+
 
 # Yzerfontein -------------------------------------------------------------
 
-# yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
-#                         zoom = 10, maptype = 'satellite')
-#  
-# ggmap(yzerfontein)
-#  
-# yzer1 <- ggmap(yzerfontein) +
-#   geom_point(data = site_list, aes(x = lon , y = lat ), 
-#               colour = "red", size =  2.5) +
-#    labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein") 
-#  
-#  yzer2 <- yzer1 +
-#     geom_text(data = site_list,
-#               aes(lon , lat , label = site),
-#               hjust = 0.5, vjust = -1,
-#               size = 4, colour = "white") +
-#    annotate("text", label = "18.15°E, -33.35°S", 
-#             x = 18.14726 , y = -33.35357, 
-#             size = 3, colour = "salmon") +
-#    theme_void() +
-#    theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
-#    coord_cartesian()
-#  
-#  yzer2
+yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
+                       zoom = 10, maptype = 'satellite')
+
+ggmap(yzerfontein)
+
+yzer1 <- ggmap(yzerfontein) +
+  geom_point(data = site_list, aes(x = lon , y = lat ), 
+             colour = "red", size =  2.5) +
+  labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein") 
+
+yzer2 <- yzer1 +
+    annotate("text", label = "18.15°E, -33.35°S", 
+           x = 18.14726 , y = -33.35357, 
+           size = 3, colour = "salmon") +
+  theme_void() +
+  theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
+  coord_cartesian()
+
+yzer2
+
+# final site map  ---------------------------------------------------------
+
+final <- cp2 + 
+  annotation_custom(grob = ggplotGrob(yzer2),
+                    xmin = 18.0, xmax = 18.2,
+                    ymin = -33.8, ymax = -34.1)
+
+final
+
+ggsave(final, filename = "final_sitemap.png")
+
+
 

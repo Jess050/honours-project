@@ -57,14 +57,19 @@ sum.morph <- morph %>%
             sd_total_len = sd(total_length))
 
 # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# 
+# sites <- c("St_James_N","St James ","St_James_S","Kalk_Bay","Miller`s_A","Miller`s_B","Miller`s_C","Black_rocks",
+#   "Buffels","Olifantsbos","Soetwater","Slangkop","Kommetjie","Oudekraal","Bakoven","Yzerfontein")
+
 
 # boxplots on standardized data 
 # convert wide data to long data 
 morph_long <- df %>% 
-  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)  #%>% 
+#  filter(site %in% sites)
 
 # visualising data 
-ggplot(data = morph_long, aes(x = variable, y = value, fill = site)) +
+ggplot(data = morph_long, aes(x = "", y = value, fill = site)) +
   geom_boxplot() +
   facet_wrap( ~ variable, scales = "free") +
   theme_classic()
@@ -136,12 +141,12 @@ ggplot(data = comp_long, aes(x = site, y = value)) +
   theme_classic()
 
 # generally juvenile kelp (30cm) show no significant difference among sites
-# some variables have larger ranges than others. 
-# adult kelp show morphological variation between sites, however the difference are not significant. 
-# at what length do adult kelp become different in appearance between sites? 
-# other sampling methods required. 
-# use standardized data in order to reduce variation among sites and underlying differences 
-# like slight differences in depth. 
+# some variables have larger ranges than others.
+# adult kelp show morphological variation between sites, however the difference are not significant.
+# at what length do adult kelp become different in appearance between sites?
+# other sampling methods required.
+# use standardized data in order to reduce variation among sites and underlying differences
+# like slight differences in depth.
 
 
 # deep water comparison  --------------------------------------------------
@@ -209,8 +214,8 @@ ggplot(data = site_long, aes(x = site, y = value)) +
   theme_classic()
 
 # adult kelp at 1m and 7m depths are significantly different at Kommetjie and Soetwater.
-# kelp are not significantly different at Miller's Point and Oudekraal, 
-# except for variables stipe length, stipe mass, total length and tufts. 
+# kelp are not significantly different at Miller's Point and Oudekraal,
+# except for variables stipe length, stipe mass, total length and tufts.
 
 
 # plot Kalk Bay at different depths 
@@ -227,7 +232,7 @@ ggplot(data = kb, aes(x = site, y = value)) +
   facet_wrap(~ variable, scales = "free") +
   theme_classic()
 
-# kelp at 7m depth have a larger range, but not really significantly different from adult kelp in shallow water. 
+# kelp at 7m depth have a larger range, but not really significantly different from adult kelp in shallow water.
 # no significant difference between adult kelp at 1m, and juvenile kelp in shallow water.
 
 
