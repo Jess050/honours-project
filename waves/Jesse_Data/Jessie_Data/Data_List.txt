@@ -1,0 +1,17 @@
+Site					7m				15m
+St_James_N				FB177			FB741
+St_James				FB174			FB738
+St_James_S				FB173			FB737
+Kalk_Bay				FB165			FB731
+Millers_C				FB087			FB667
+Millers_A				FB085			FB665
+Millers_B				FB084			FB664
+Black_rocks				FB042			FB612
+Buffels					FB032			FB605
+Olifantsbos				TB044			TB260
+Soetwater				TB062			TB277
+Slangkop				TB071			TB286
+Kommetjie				TB074			TB289
+Oudekraal				TB126			TB341
+Bakoven					TB133			TB350
+Yzerfontein				YZ121			YZ351
