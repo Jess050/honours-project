@@ -112,11 +112,11 @@ temp2 <- temp1 %>%
   filter(x_fac %in% month)
 
 #visualise
-ggplot(temp2, aes(x = site, y = temp)) +
-  facet_wrap(~ x_fac) +
+ggplot(temp1, aes(x = site, y = temp)) +
+  facet_wrap(as.factor(month)) +
   geom_boxplot(aes(colour = site)) +
   geom_point(data = mean, aes(x = site, y = mn.temp), shape = 2) +
-  theme_classic()
+  theme_classic() 
 
 # order months correctly
 
