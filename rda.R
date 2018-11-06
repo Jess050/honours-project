@@ -95,6 +95,7 @@ wave_data <- rbind(Bakoven, Black_rocks, Buffels, Kalk_bay, Kommetjie, Millers_A
 rm(Bakoven, Black_rocks, Buffels, Kalk_bay, Kommetjie, Millers_A, Millers_B, Millers_C, 
    Olifantsbos, Oudekraal, Slangkop, Soetwater, St_James, St_James_N, St_James_S, Yzerfontein)
 
+# removing number, depth and date columns 
 wave <- wave_data[,-2:-4]
 
 # Annual climatology for the wave data
@@ -104,7 +105,9 @@ wave_env <- wave %>%
   ungroup() %>% 
   group_by(site) %>% 
   select(site, everything())
-# 
+
+# determining range did not work within the above code nor trying to do it separately below. 
+
 # range <- wave_env %>% 
 #   group_by(site) %>% 
 #   summarise_all(dir_range = dir_max - dir_min, 
@@ -113,16 +116,36 @@ wave_env <- wave %>%
 #                 tp_range = tp_max - tp_min,
 #                 spw_range = spw_max - spw_min)
 
+# Temperature Climatology -------------------------------------------------
+
+load("D:/honours/honours-project/data/SACTN_monthly_v4.2.Rdata")
+
+# create site data frame
+sites <-  c("Muizenberg", "Muizenberg", "Muizenberg", "Kalk Bay", "Miller's Point", "Miller's Point", "Miller's Point",
+            "Bordjies", "Buffelsbaai", "Kommetjie", "Kommetjie", "Kommetjie","Kommetjie", "Oudekraal", "Oudekraal", "Yzerfontein")
+
+# separate index into site and source, and replace sites with the new sites df
+temps <- SACTN_monthly_v4.2 %>% 
+  separate(index, c("site", "source"), "/") %>% 
+  filter(site %in% sites)
 
 
-# managing site names --------------------------------------------------------
-
-
-# temp sites replicated instead of interpolated, 
-# rename temp site names with wave sites name. in order for it to match to perform RDA 
+# managing site names 
+# temp sites replicated instead of interpolated, sites in closest proximity to one another will use same temp data
+# rename temp site names with wave sites name, in order for it to match to perform RDA 
 
 unique(temps$site)
 
+temp_monthly <- temps %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(mean_temp = mean(temp, na.rm = T),
+            min_temp = min(temp, na.rm = T),
+            max_temp = max(temp, na.rm = T),
+            range_temp = range(temp, na.rm = T)[2]-range(temp, na.rm = T)[1],
+            sd_temp = sd(temp, na.rm = T)) %>%
+  filter(date %in% c("Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")) %>% 
+  ungroup()
 
 # oudekraal rep for bakoven 
 oude <- temp_monthly %>% 
@@ -235,6 +258,7 @@ yzer <- temp_monthly %>%
 monthly_temp <- rbind(bakoven, black_rocks, buffels, Kalk_Bay, Kom, millers_A, millers_B, millers_C, 
                       Olifantsbos, oudekraal, slangkop, soetwater, St_James, st_james_N, St_James_S, yzer) 
 
+
                 
 # temp annual 
 ann_temp <-  monthly_temp %>% 
@@ -250,8 +274,10 @@ ann_temp <-  monthly_temp %>%
 try_env <- merge(wave_env, ann_temp, by = c("site"))
 
 # remove columns with values = 0
-work <- try_env[, colSums(try_env != 0) > 0]
+env <- try_env[, colSums(try_env != 0) > 0]
 
+
+# Morphological data  -----------------------------------------------------
 
 # load in morphology data 
 morph <- as.tibble(read_csv("D:/honours/honours-project/data/morph_update.csv")[, -14])
@@ -283,6 +309,7 @@ sum.morph <- morph_spe %>%
             mn_total_len = mean(total_length), 
             sd_total_len = sd(total_length))
 
+# rmeoving site and depth columns 
 spe <- sum.morph[,-1:-2]
 
 
@@ -292,8 +319,8 @@ spe <- sum.morph[,-1:-2]
 morph.hel <- as.tibble(decostand(spe, "hellinger"))
 morph.hel
 
-# env2 <- env[-1:-2]
-(morph.rda <- rda(morph.hel ~ ., work))
+# run RDA 
+(morph.rda <- rda(morph.hel ~ ., env))
 
 #total inertia constrained axis (RDA)
 sum(morph.rda$CCA$eig)
@@ -305,6 +332,8 @@ summary(morph.rda)	# Scaling 2 (default)
 
 # Canonical coefficients from the rda object
 coef(morph.rda)
+# env components displays as NA ???
+
 # Unadjusted R^2 retrieved from the rda object
 (R2 <- RsquareAdj(morph.rda)$r.squared)
 # Adjusted R^2 retrieved from the rda object
@@ -346,6 +375,7 @@ arrows(0, 0, spe.sc2[,1]*0.92, spe.sc2[,2]*0.92, length=0, lty=1, col="red")
 
 # Global test of the RDA result
 anova(morph.rda, permutations=how(nperm=999))
+# no p-value
 
 # which axes are NB 
 # Tests of all canonical axes
@@ -357,6 +387,7 @@ anova(morph.rda, by="term", permutations=how(nperm=999))
 
 # Variance inflation factors (VIF) (extracts colinearity)
 vif.cca(morph.rda)
+# again env components not showing values 
 # exclude certain variables then run again 
 # no exact answer, dependent on ur argument 
 
