@@ -13,7 +13,7 @@ load("data/south_africa_coast.Rdata")
 load("data/sa_provinces.Rdata")
 
 
-# remove De Hoop
+# remove yzerfontein
 kelp_sites <- read_delim("data/sites_fin.csv", ";", escape_double = FALSE, trim_ws = TRUE)
 kelp_sites_map <- subset(kelp_sites, !site == "Yzerfontein")
 
