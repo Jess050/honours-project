@@ -71,18 +71,18 @@ morph_long <- df %>%
 # figure 1
 # visualising data 
 ggplot(data = morph_long, aes(x = "", y = value, fill = site)) +
-  geom_boxplot() +
+  geom_boxplot(notch = TRUE) +
   facet_wrap( ~ variable, scales = "free") +
   theme_classic()
 
-# Fig 1: Morphological variables of E.maxima collected at 1m depth. 
+# Fig 1: Morphological variables of E.maxima collected at 1m depth.
 # Frond length showed no specific pattern in geographic location among the sites.
 # Both west coast and False Bay sites had variable frond lengths.
-# Kalk Bay and Soetwater both had significantly shorter frond lengths than the other sites displayed. 
-# Olifantsbos, St James North, Yzerfontein and Oudekraal showed the largest variability in frond lengths when comparing the descriptive statistical boxplots. 
+# Kalk Bay and Soetwater both had significantly shorter frond lengths than the other sites displayed.
+# Olifantsbos, St James North, Yzerfontein and Oudekraal showed the largest variability in frond lengths when comparing the descriptive statistical boxplots.
 # Frond mass however, displayed large variability at Oudekraal, St James and Yzerfontein and Kommetjie, with the former three sites having lager masses than that of Kommetjie.
-# All other sites had relatively low variability and lighter frond mass. Sites located fairly close together such as Miller’s Point (including Miller’s A, B and C), St. James north and St. James South, and Black Rocks and Buffels, showed no significant difference in frond mass compared to each other. 
-# Stipe length displayed the most variability among sites, irrespective of the proximity of their locations. False Bay sites generally have longer stipes than sites along the west coast. Stipe mass is fairly similar across all sites. 
+# All other sites had relatively low variability and lighter frond mass. Sites located fairly close together such as Miller’s Point (including Miller’s A, B and C), St. James north and St. James South, and Black Rocks and Buffels, showed no significant difference in frond mass compared to each other.
+# Stipe length displayed the most variability among sites, irrespective of the proximity of their locations. False Bay sites generally have longer stipes than sites along the west coast. Stipe mass is fairly similar across all sites.
 # Stipe circumference is rather similar for all sites except Bakoven on the west coast and Kalk Bay in False Bay.The primary blades of E. maxima have high variability in their lengths, with longer primary blades found along the west coast, especially at olifantsbos, Oudekraal and Slangkop.
 
 
@@ -106,7 +106,7 @@ ggplot(data = comp_long, aes(x = site, y = value)) +
   facet_wrap(~ variable, scales = "free") +
   theme_classic()
 
-# Fig 2: A comparison of E. Maxima morphological variables collected at different depths. (deep/adult collected at 1m depth, shallow/adult and shallow/juvenile collected at the shoreline)
+# Fig 2: A comparison of E. Maxima morphological variables collected from three site, at three different depths. (deep/adult collected at 1m depth, shallow/adult and shallow/juvenile collected at the shoreline)
 # Both deep and shallow adult kelp show morphological variation between St James North and St James South for all variables, however the differences are not significant.
 # However, all morphological variables of shallow kelp collected at Kalk Bay is significantly larger than that of adult kelp collected at 1m.  
 # Juvenile kelp at all sites is significantly different in primary width, stipe circumference, stipe length, stipe mass and total length. 
@@ -181,6 +181,7 @@ kb <- comb_long %>%
 ggplot(data = kb, aes(x = site, y = value)) +
   geom_boxplot(aes(colour = depth)) +
   facet_wrap(~ variable, scales = "free") +
+  labs(title = "kalk bay" ) +
   theme_classic()
 
 # Fig4: morphological variables of E. Maxima collected at Kalk Bay at different depths ( deep/adult collected at 1m , deepest/adult collected at 7m, shallow/adult and shallow/juvenile collected along the shoreline). 
@@ -202,8 +203,9 @@ mp <-  rbind(mp_deep, mp_shallow)
 
 # figure 5 
 ggplot(data = mp, aes(x = site, y = value)) +
-  geom_boxplot(aes(colour = depth)) +
+  geom_boxplot(aes(colour = depth), notch = TRUE) +
   facet_wrap(~ variable, scales = "free") +
+  labs( title = "Fig5: morphological variables of E. Maxima collected at Miller’s Point at different depths (deep/adult collected at 1m, deepest/adult collected at 7m)") +
   theme_classic()
 
 # Fig5: morphological variables of E. Maxima collected at Miller’s Point at different depths (deep/adult collected at 1m, deepest/adult collected at 7m). 
