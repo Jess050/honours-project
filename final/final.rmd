@@ -2,7 +2,6 @@
 title: Morphometric properties of shallow water kelp, Ecklonia maxima, along thermal
   and wave exposure gradients.
 author: "Jesse Smith"
-- affiliation: University of the Western Cape
 Project Supervisor: Prof AJ Smit
 Assistant Supervisor: Ross Coppin
 date: "November 2018"
@@ -43,7 +42,7 @@ sansfont: PT Sans
 tables: yes
 ---
 
-```{r}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.pos = "h")
 ```
 
@@ -114,7 +113,7 @@ west_coast_sites <- site_list %>%
 # load map of cape point
 load("data/cape_point.RData")
 
-ggmap(cape_point)
+# ggmap(cape_point)
 
 cp1 <- ggmap(cape_point) +
   geom_point(data = site_list, aes(x = long , y = lat ), 
@@ -174,53 +173,53 @@ cp2
 
 ```
 
-```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="A site mape showing the locations at which the morphometric measuremnets of _Ecklonia maxima_ were collected for this study", fig.height=8, fig.width=10}
+```{r,echo= FALSE, message=FALSE, warning=FALSE}
 
-library(tidyverse)
-library(vegan)
-library(RColorBrewer)
-library(gridExtra)
-library(lubridate)
-library(GGally)
-library(ggpubr)
-library(ggrepel)
-
-# Load map data
-load("data/south_africa_coast.Rdata")
-load("data/sa_provinces.Rdata")
-
-
-# remove yzerfontein
-kelp_sites <- read_delim("data/sites_fin.csv", ";", escape_double = FALSE, trim_ws = TRUE)
-kelp_sites_map <- subset(kelp_sites, !site == "Yzerfontein")
-
-# Subset into 4 regions
-west__up_site <- subset(kelp_sites, site == "Oudekraal" | site == "Bakoven")
-
-west__down_site <- subset(kelp_sites, site == "Soetwater" | site == "Olifantsbos" | site == "Slangkop" | site == "Kommetjie")
-
-east_up_site <- subset(kelp_sites, site == "Kalk_Bay" | site == "St James" | site == "St_James_N" | site == "St_James_S") 
-
-east_down_site <- subset(kelp_sites, site == "Millers`s_A" | site == "Miller`s_B" | site == "Miller`s_C" 
-                         | site == "Black_rocks" | site == "Buffels")
-
-# plot map
-ggplot(data = kelp_sites_map, aes(x = long, y = lat)) +
-  geom_polygon(data = south_africa_coast, aes(group = group), fill = "grey70") +
-  geom_path(data = sa_provinces, aes(group = group)) +
-  geom_point(data = kelp_sites_map)  +
-  coord_fixed(xlim = c(17.65, 19.5), ylim = c(-32.75, -34.6)) +
-  geom_label_repel(data = west__up_site, aes(x = long, y = lat, label = site), 
-                   size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = 0.2, segment.alpha = 0.4) +
-  geom_label_repel(data = west__down_site, aes(x = long, y = lat, label = site), 
-                   size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = -0.2, segment.alpha = 0.4) +
-  geom_label_repel(data = east_up_site, aes(x = long, y = lat, label = site), 
-                   size = 3, box.padding = 0.5, nudge_x = 0.5, nudge_y = 0.3, segment.alpha = 0.4) +
-  geom_label_repel(data = east_down_site, aes(x = long, y = lat, label = site), 
-                   size = 3, box.padding = 0.5, nudge_x = 0.35, nudge_y = -0.15, segment.alpha = 0.4) +
-  theme(axis.title = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_blank())
+# library(tidyverse)
+# library(vegan)
+# library(RColorBrewer)
+# library(gridExtra)
+# library(lubridate)
+# library(GGally)
+# library(ggpubr)
+# library(ggrepel)
+# 
+# # Load map data
+# load("data/south_africa_coast.Rdata")
+# load("data/sa_provinces.Rdata")
+# 
+# 
+# # remove yzerfontein
+# kelp_sites <- read_delim("data/sites_fin.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+# kelp_sites_map <- subset(kelp_sites, !site == "Yzerfontein")
+# 
+# # Subset into 4 regions
+# west__up_site <- subset(kelp_sites, site == "Oudekraal" | site == "Bakoven")
+# 
+# west__down_site <- subset(kelp_sites, site == "Soetwater" | site == "Olifantsbos" | site == "Slangkop" | site == "Kommetjie")
+# 
+# east_up_site <- subset(kelp_sites, site == "Kalk_Bay" | site == "St James" | site == "St_James_N" | site == "St_James_S") 
+# 
+# east_down_site <- subset(kelp_sites, site == "Millers`s_A" | site == "Miller`s_B" | site == "Miller`s_C" 
+#                          | site == "Black_rocks" | site == "Buffels")
+# 
+# # plot map
+# ggplot(data = kelp_sites_map, aes(x = long, y = lat)) +
+#   geom_polygon(data = south_africa_coast, aes(group = group), fill = "grey70") +
+#   geom_path(data = sa_provinces, aes(group = group)) +
+#   geom_point(data = kelp_sites_map)  +
+#   coord_fixed(xlim = c(17.65, 19.5), ylim = c(-32.75, -34.6)) +
+#   geom_label_repel(data = west__up_site, aes(x = long, y = lat, label = site), 
+#                    size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = 0.2, segment.alpha = 0.4) +
+#   geom_label_repel(data = west__down_site, aes(x = long, y = lat, label = site), 
+#                    size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = -0.2, segment.alpha = 0.4) +
+#   geom_label_repel(data = east_up_site, aes(x = long, y = lat, label = site), 
+#                    size = 3, box.padding = 0.5, nudge_x = 0.5, nudge_y = 0.3, segment.alpha = 0.4) +
+#   geom_label_repel(data = east_down_site, aes(x = long, y = lat, label = site), 
+#                    size = 3, box.padding = 0.5, nudge_x = 0.35, nudge_y = -0.15, segment.alpha = 0.4) +
+#   theme(axis.title = element_blank(),
+#         axis.ticks = element_blank(),
+#         axis.text = element_blank())
 
 ```
 
@@ -633,7 +632,7 @@ ggplot(temps_sites, aes(x = date, y = temp )) +
 ```
 
 Wind and Wave Climatology 
-```{r, echo= FALSE, message=FALSE, warning=FALSE,}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 
 # writing a function for extraction of wave data 
 load_wave <- function(wave_files) {
@@ -749,7 +748,7 @@ wave_clim <- rbind(wave_monthly, wave_annual) %>%
   ungroup() 
 ```
 
-```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Wind and wave parameters at sites were the morphometric measurements of _E. maxima_ were collected.", fig.height=8, fig.width=10}
+```{r echo=FALSE, fig.cap="Wind and wave parameters at sites were the morphometric measurements of _E. maxima_ were collected.", fig.height=8, fig.width=10, message=FALSE, warning=FALSE}
 
   a <- ggplot(wave_monthly, aes(x = month, y = hs)) + 
     facet_wrap(~ site) +
@@ -798,7 +797,7 @@ wave_clim <- rbind(wave_monthly, wave_annual) %>%
 
 
 Morphometric and environmental data for RDA
-```{r, echo= FALSE, message=FALSE, warning=FALSE,}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 
 # Ecklonia
 eck_mean <- eck_data %>% 
@@ -830,17 +829,18 @@ abio <- eck_abio[,c(-145,-147,-245,-247,-255)]
 
 The results of the RDA showed that Annual_dir_max, Annual_dir_mean, Annual_dir_min, Annual_dir_sd, Annual_dirw_max, Annual_hs_max, Annual_hs_mean, Annual_hs_min, Annual_hs_sd, Annual_tp_max, Annual_tp_mean, Annual_tp_min, Annual_tp_sd, Apr_dir_max and Apr_dir_mean are the most influential environmental factors affecting _E. maxima_ morphology, with an R^2^ value of 0.999. The adjusted R^2^ value yielded inconclusive results (NA). Only the first two canonical axes were used in the RDA; RDA1 and RDA2, explaining 57.7% and 30.3% of the variation respectively, and 88% cumulatively. The biplot scores for constraining variables, showed that annual wave standard deviation (Annual_dir_sd), annual wave period standard deviation (Annual_tp_sd), maximum annual wave direction (Annual_dir_max) and the maximum wave direction in April (Apr_dir_max) were heavily loaded along the RDA1 axis, and negatively influence stipe length. Whereas the other influential factors mentioned above, were more heavily loaded along the second RDA axis (RDA2), positively influencing primary length.
 
-```{r, fig.cap=" Figure 6: An RDA biplot for the morphometric measurements of _E. maxima_,  constrained by thermal and wave exposure parameters(environmental variables). The first two canonical axes, RDA1 and RDA2, represent the bulk of the inertia. The environmental (explanatory) variables are depicted by blue vectors extending from the origin. The morphological measurements represent the response variables, and are shown in red. The black points represent the sites, at which morphological measurements were collected.", fig.height=8, fig.width=10, fig.pos="H"}
+```{r, echo=FALSE, fig.cap=" Figure 6: An RDA biplot for the morphometric measurements of _E. maxima_, constrained by thermal and wave exposure parameters(environmental variables). The first two canonical axes, RDA1 and RDA2, represent the bulk of the inertia. The environmental (explanatory) variables are depicted by blue vectors extending from the origin. The morphological measurements represent the response variables, and are shown in red. The black points represent the sites, at which morphological measurements were collected.", fig.height=8, fig.width=10}
+
 # run RDA 
 eck_RDA <- rda(eck_bio ~ ., data = abio)
-eck_RDA
+# eck_RDA
 
-summary(eck_RDA)
+summ_rda <- summary(eck_RDA)
 
 # Unadjusted R^2 retrieved from the rda object
-(R2 <- RsquareAdj(eck_RDA)$r.squared)
+R2 <- RsquareAdj(eck_RDA)$r.squared
 # Adjusted R^2 retrieved from the rda object
-(R2adj <- RsquareAdj(eck_RDA)$adj.r.squared) #report this value
+R2adj <- RsquareAdj(eck_RDA)$adj.r.squared #report this value
 
 plot(eck_RDA, scaling = 2)
 
