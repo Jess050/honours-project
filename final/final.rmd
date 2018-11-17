@@ -40,11 +40,6 @@ monofont: PT Mono
 papersize: A4
 sansfont: PT Sans
 tables: yes
-bibliography: final/eck_morph.bib
-
-- \usepackage{float}
-- \floatplacement{figure}{H}
-
 ---
 
 ```{r}
@@ -102,7 +97,7 @@ library(mapdata)
 library(mapproj)
 
 # load data ---------------------------------------------------------------
-site_list <- read.csv("D:/honours/honours-project/data/sites_fin.csv", sep=";")
+site_list <- read.csv("data/sites_fin.csv", sep=";")
 
 # slice "selects rows" as select "selects columns"
 
@@ -143,35 +138,35 @@ cp2 <- cp1 +
 cp2
 
 # Yzerfontein -------------------------------------------------------------
-
-yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
-                       zoom = 10, maptype = 'satellite')
-
-ggmap(yzerfontein)
-
-yzer1 <- ggmap(yzerfontein) +
-  geom_point(data = site_list, aes(x = lon , y = lat ),
-             colour = "red", size =  2.5) +
-  labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein")
-
-yzer2 <- yzer1 +
-    annotate("text", label = "18.15°E, -33.35°S",
-           x = 18.14726 , y = -33.35357,
-           size = 3, colour = "salmon") +
-  theme_void() +
-  theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
-  coord_cartesian()
-
-yzer2
-
-# final site map  ---------------------------------------------------------
-
-final_sitemap <- cp2 +
-  annotation_custom(grob = ggplotGrob(yzer2),
-                    xmin = 18.0, xmax = 18.2,
-                   ymin = -33.9, ymax = -34.1)
- 
-final_sitemap
+# 
+# yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
+#                        zoom = 10, maptype = 'satellite')
+# 
+# ggmap(yzerfontein)
+# 
+# yzer1 <- ggmap(yzerfontein) +
+#   geom_point(data = site_list, aes(x = lon , y = lat ),
+#              colour = "red", size =  2.5) +
+#   labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein")
+# 
+# yzer2 <- yzer1 +
+#     annotate("text", label = "18.15°E, -33.35°S",
+#            x = 18.14726 , y = -33.35357,
+#            size = 3, colour = "salmon") +
+#   theme_void() +
+#   theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
+#   coord_cartesian()
+# 
+# yzer2
+# 
+# # final site map  ---------------------------------------------------------
+# 
+# final_sitemap <- cp2 +
+#   annotation_custom(grob = ggplotGrob(yzer2),
+#                     xmin = 18.0, xmax = 18.2,
+#                    ymin = -33.9, ymax = -34.1)
+#  
+# final_sitemap
 
 ```
 
@@ -240,7 +235,7 @@ library(vegan)
 
 # load data 
 # loading data about the morphometric properties of _Ecklonia maxima_ 
-morph <- as.tibble(read_csv("D:/honours/honours-project/data/morph_update.csv")[, -14])
+morph <- as.tibble(read_csv("data/morph_update.csv")[, -14])
 # the column epiphyte length was removed, as it was inconsistently measured at some sites, and not measured at all at other sites. 
 
 # standardise data 
