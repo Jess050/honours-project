@@ -6,12 +6,12 @@ Project Supervisor: Prof AJ Smit
 Assistant Supervisor: Ross Coppin
 date: "November 2018"
 output:
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    highlight: default
-    keep_tex: yes
-    latex_engine: xelatex
+  word_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
+    highlight: zenburn
+    toc: no
   html_document:
     fig_caption: yes
     fig_retina: 2
@@ -26,12 +26,12 @@ output:
     highlight: espresso
     theme: sandstone
     toc_float: no
-  word_document:
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
-    highlight: zenburn
-    toc: no
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    highlight: default
+    keep_tex: yes
+    latex_engine: xelatex
 fontsize: 12pt
 geometry: margin=1in
 language: Australian
