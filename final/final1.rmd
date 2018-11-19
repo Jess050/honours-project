@@ -1,0 +1,896 @@
+---
+title: Morphometric properties of shallow water kelp, Ecklonia maxima, along thermal
+  and wave exposure gradients.
+author: "Jesse Smith"
+- affiliation: University of the Western Cape
+Project Supervisor: Prof AJ Smit
+Assistant Supervisor: Ross Coppin
+date: "November 2018"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    highlight: default
+    keep_tex: yes
+    latex_engine: xelatex
+  html_document:
+    fig_caption: yes
+    fig_retina: 2
+    fig_width: 7
+    highlight: espresso
+    theme: sandstone
+    toc_float: no
+  bookdown::html_document2:
+    fig_caption: yes
+    fig_retina: 2
+    fig_width: 7
+    highlight: espresso
+    theme: sandstone
+    toc_float: no
+  word_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
+    highlight: zenburn
+    toc: no
+fontsize: 12pt
+geometry: margin=1in
+language: Australian
+mainfont: PT Serif
+monofont: PT Mono
+papersize: A4
+sansfont: PT Sans
+tables: yes
+bibliography: final/eck_morph.bib
+
+- \usepackage{float}
+- \floatplacement{figure}{H}
+
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE, fig.pos = "h")
+```
+
+\newpage
+## Plagiarism Declaration
+
+\newpage
+## Declaration
+
+\newpage
+## Abstract
+
+_Ecklonia maxima_ a large brown kelp, order _Laminariales_, occurs in areas of warm to cold temperate waters in the sub- and intertidal rocky substrate, and its biogeographical range extends from north of Lüderitz, Namibia to west of Cape Agulhas in South Africa. This large geographic distribution is characterised by various thermal and wave energy regimes. Temperature is said to drive the geographical distribution and wave exposure is the most identified cause of morphological variation in kelp. Sites were selected along the geographic distribution of _E. maxima_ under varying temperature and wave exposure regimes. Morphometric measurements of thirteen _E. maxima_ sporophytes were collected in 1m deep shallow water at 16 sites in False Bay and along the south west coast. The parameters of temperature and wave exposure were investigated to identify which parameters best explain the morphological variation in the different kelp communities. The results of the RDA showed no temperature parameters to be influential in the morphology of shallow water_ E. maxima_. The wave exposure parameters with the most influence were the parameters around the mean of annual wave direction, annual wave height, and annual wave period. Annual maximum wind direction and April’s mean and maximum wave direction were also important factors. Kelps collected from False Bay sites showed to have longer stipe lengths to withstand extreme wave exposure, whereas, kelps along the west coast have adapted morphologies that increase their surface area for maximum nutrient uptake.
+
+*Keywords*: Temperature regimes, Wave exposure, _Ecklonia maxima_, morphology, distribution 
+
+
+\newpage
+---
+## Introduction 
+
+Kelps often congregate in populations known as kelp forests and are found in temperate and polar coastal regions and are amongst the most productive ecosystems in the world (@Mann1973; @Fredriksen2003; @RysgaardandNielsen2006; @Merzouk2011, @Bolton2010, @Lüning1990, @Kain1979, @SteneckandJohnson2013), especially  in areas of frequent upwelling (@Druehl1981). The rich biodiversity of kelp forests allow for a number of food webs and trophic levels to exist. Kelps form the basis of some of these food webs, and are important primary producers, as they supply herbivores, detritivores and microbes with vital nutrients. These underwater forests also provide shelter, food and are nursery grounds for various marine species (@Anderson1997, @Steneck2002, @Merzouk2011). Kelp is considered as an ecosystem engineer, and is important in ecosystem functioning, providing ecosystem services that include purifying and removing waste produced by organisms living within the forests. 
+
+Many environmental factors influence kelp bed communities, where temperature drives the geographical distribution of marine organisms (@Lüning1990, @Bolton2010 @Rothman2015). This biogeographical range is largely determined by the kelp species tolerance of high summer maxima and low winter minima temperatures (@Luning1984; @vandenHoekandLuning1988; @vandenHoeketal1990; @AdeyandSteneck2001) However, for kelp beds, many other factors determine their distribution, these include: wave action, grazing (@McQuaidandBranch1984; @KalvasandKautsky1993, @Wernberg&Goldberg2008, @Bekkbyetal2009), nutrient concentrations, photoperiod (@Lüning1980, @Lüning1990), tides, topography of substrata (@Fowler-WalkerandConnell2007, @Bekkbyetal2009) and depth, among other ecological factors. Depth is a proxy for light attenuation (@Lüning1990, @Bekkbyetal2009) making it (depth) a major regulatory factor in the vertical distribution of kelp.
+
+South Africa is bordered by two large intricate currents, the warm tropical Agulhas current on the east coast (@Bealetal2011, @Rouaultetal2010, @Schumann1988, @DeClercketal2005), and the northward flowing cold nutrient rich Benguela on the west coast (@AndrewsandHutchings1980, @Shannon1985, @ShannonandPillar1986), thus interaction of these two currents have profound effects on marine life (@Partridgeetal2004, @Schmitz1995, @Shillingtonetal2006, @Walker1990). South Africa is unique in that the interaction of these currents occurs over a relatively short spatial scale at the south western coast, between Cape Point and Cape Agulhas. This interaction results in a large temperature gradient along the shore (@Smitetal2013, @Smitetal2017). These large temperature gradients have shown to diminish kelp distribution (@Bolton2010). The west coast proves to be an ideal location for the growth of kelp, due to the intense upwelling conditions experienced in summer (@Fieldetal1980, @Fieldetal1981). The upwelling of deep cold water brings with it nutrients which allow life to proliferate. However, it comes at a cost; upwelling results in a more turbid environment, drastically reducing light levels (@Anderson1982). Light and nutrients are both limiting factors for the optimal growth of kelp, and studies by Luning and Neushul (1978), and Luning (1980), showed that due to insufficient light and nutrients, growth and reproduction rates were reduced in Laminarian species. 
+
+_Ecklonia maxima_,(Osbeck) Papenf. is a species of large brown kelp from the order Laminariales; it is characterised by a long hollow stipe, a spear-shaped primary blade, and secondary blades that grow bilaterally. It is the more dominant species of the four kelp species ( _Ecklonia maxima_, _Laminaria pallida_, _Macrocystis pyrifera_ and _Ecklonia radiat_) found along the coast of Southern Africa. The former three species form dense beds in the cold nutrient rich waters of the Benguela Marine Province and the Benguela-Agulhas Transition Zone (@Bolton2012), while _E. radiata_ inhabits the warmer east coast of South Africa. _E. maxima_ forms a floating canopy up to depths of 19m and _L. pallida_ forms the sub-canopy at depths generally greater than that of the former species. _E. maxima_ occurs in areas of warm to cold temperate waters in the sub- and intertidal rocky substrate (@StenekandJohnson2013, @Rothman2015), and its biogeographical range extends from north of Lüderitz, Namibia to west of Cape Agulhas in South Africa (@Bolton1985; @Probyn1985; @Bolton1987; @Bolton2012). Previously described as a cold water species by Griffiths and Mead (2011), _E. Maxima_ has since been reclassified as a warm temperate water species since it is found in False Bay, in the Benguela-Agulhas Transition zone, where monthly mean temperatures in summer exceed 18 °C (@Bolton2012). False Bay’s high summer temperatures are a result of solar heating of entrained water (@Andersonetal1997) by the strong south easterly wind, affectionately named the Cape Doctor (@Gyoryetal), blowing the warm Agulhas current into the bay. The same south easterly wind moves up over Table Mountain and blows the surface water offshore, allowing cold, nutrient rich water to be upwelled to the surface, promoting primary productivity (@Boyeretal2000; @Skogen1999).
+
+Many studies have stated that wave exposure is the most identified cause of morphological variation in kelp (@GerardandMann1979; @Cousens1982; @CheshireandHallam1988; @MolloyandBolton1996; @Ralphetal1998; @Hurd2000; @Blanchetteetal2002; @RobersonandCoyer2004), while Koehl (1986), Wheeler (1988), Hurd (2000) and Wernberg and Thomsen 2005) demonstrated that wave exposure affects many of the morphological characteristics in kelp.  Because wave climates can statistically and physically be described by a suite of wave parameters, it is probable that each wave metric would interaction different morphological variables would respond differently to each parameter. Generally, kelp growing in exposed areas is tougher, sturdier, and more strongly attached than those in sheltered areas (@WernbergandThomsen2005). Frond characteristics of kelp in exposed areas are narrow, thick, flat and smooth, whereas those in sheltered areas have blades that are wide and thin with ruffled margins (@WernbergandThomsen2005). 
+
+Wernberg and Thomsen (2005) observed that _Ecklonia radiata_ responded to intense wave exposure by having small narrow blades (@Gerard1987) with minimal spinosity to reduce drag, as well as larger holdfasts (@SjøtunandFredriksen1995), thicker stipes (@CheshireandHallam1988; @KlingerandDeWreede1988) and thicker lamina (@CheshireandHallam1988; @MolloyandBolton1996; @Kawamata2001) for increased strength. Morphological adaptations are beneficial for mortality (@FriedlandandDenny1995; @Blanchetteetal2002, @WernbergandThomsen2005) but are consequential in that it reduces rates of photosynthesis, productivity and growth (@GerardandMann1979; @JackelmanandBolton1990; @Blanchetteetal2002, @WernbergandThomsen2005). Kelp needs to be flexible, to resist hydrostatic bending forces (@Nortonetal1982). It was suggested that kelp flexibility in the stipes might be related to wave exposure, especially in shallow water, implying that the kelp strategy for survival in high water motion environments is flexibility rather than strength and resistance (@Rothman2015).
+
+Since the temperature and wave climate that affect kelp distribution and morphology are subject to climatic change, it is not unreasonable to surmise that this changing climate might have consequences for the ecology of kelp beds. The Agulhas current system has warmed significantly (1.5°C in 20 years) and a decrease in sea surface temperature (up to 0.5°C per decade) has been observed along the East Coast, near Port Alfred and in Algoa Bay (Port Elizabeth) (@Rouaultetal2009; @Rouaultetal2010; @Rouaultetal2011). Bolton (2012) suggested that there is a high probability that kelp abundance increased (1986-2007) along the west coast of South Africa, where water temperatures are getting cooler. In addition, the altered wind and rainfall patterns change the intensity of the Benguela upwelling system (@Rouaultetal2010).
+
+Kelp are an important indicator of change as they are extremely responsive to environmental conditions and are very exposed to human activities such as harvesting, pollution, recreational fishing and sedimentation, which impact on the coastal zone (@Krumhansletal2016). Increased sea surface temperatures could result in a loss of abundance and alter the range of this keystone species (@Merzouk2011), resulting in changes in the community structure of marine organisms living within the kelp beds. 
+
+The distribution of kelps range across vast hydrodynamic environments and therefore they present an array of morphological variation (@JohnsonandKoehl1994; @RobersonandCoyer2004; @WernbergandVanderklift2010). It is therefore to be determined how environmental factors such as temperature and wave exposure influence or affect the morphology of shallow water _E. maxima_. This will be accomplished by understanding how the various aspects of kelp morphology and environmental parameters differ at various sites along the Cape Peninsula. The parameters of temperature and wave exposure will also be investigated to identify which parameters can best explain the morphological variation in the different kelp communities. Based on previous studies it is hypothesised that populations with similar temperature and wave exposure regimes will have similar morphologies and that populations in False Bay, would have morphologies adapted to high wave action and thus be more stonger and flexible; whereas populations along the West coast would have developed morphologies to maximise nutrient uptake. 
+
+\newpage
+## Methods 
+
+### Study Area
+
+Sites were selected according to the geographic distribution of _E. maxima_, under varying levels of wave exposure and temperature regimes along the south west coast of South Africa. This region experiences  The chosen sites are along the West Coast and False Bay regions, from St. James in False Bay to Yzerfontein on the West Coast. 
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="A site mape showing the locations at which the morphometric measuremnets of _Ecklonia maxima_ were collected for this study", fig.height=8, fig.width=10}
+# load libraries
+
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(dplyr)
+library(mapdata)
+library(mapproj)
+
+# load data ---------------------------------------------------------------
+site_list <- read.csv("D:/honours/honours-project/data/sites_fin.csv", sep=";")
+
+# slice "selects rows" as select "selects columns"
+
+false_bay_sites <- site_list %>% 
+  slice(c(1,5:7,11:15))
+
+west_coast_sites <- site_list %>% 
+  slice(c(2:4,8:10,16))
+
+# load map of cape point
+load("data/cape_point.RData")
+
+ggmap(cape_point)
+
+cp1 <- ggmap(cape_point) +
+  geom_point(data = site_list, aes(x = long , y = lat ), 
+             colour = "red", size =  2.5) +
+  labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Site Map") 
+
+cp2 <- cp1 +
+  geom_text(data = false_bay_sites,
+            aes(long, lat, label = site), 
+            hjust = 0, vjust = 0.7, 
+            size = 4, colour = "white") + 
+  geom_text(data = west_coast_sites,
+            aes(long, lat, label = site), 
+            hjust = 1.05, vjust = 0.7, 
+            size = 4, colour = "white") +
+  annotate("text", label = "False Bay", 
+                      x = 18.7 , y = -34.3,
+                      size = 5, colour = "salmon")+
+  annotate("text", label = "West Coast", 
+           x = 18.1 , y = -34.3,
+           size = 5, colour = "salmon")+
+  theme_bw()+
+  coord_cartesian()
+
+cp2
+
+# Yzerfontein -------------------------------------------------------------
+
+yzerfontein <- get_map(location = c(lon = 18.14726, lat = -33.35357),
+                       zoom = 10, maptype = 'satellite')
+
+ggmap(yzerfontein)
+
+yzer1 <- ggmap(yzerfontein) +
+  geom_point(data = site_list, aes(x = lon , y = lat ),
+             colour = "red", size =  2.5) +
+  labs(x = "Latitude(°E)", y = "Longitude(°S)", title = "Yzerfontein")
+
+yzer2 <- yzer1 +
+    annotate("text", label = "18.15°E, -33.35°S",
+           x = 18.14726 , y = -33.35357,
+           size = 3, colour = "salmon") +
+  theme_void() +
+  theme( panel.border = element_rect(colour = "white", fill=NA, size=5)) +
+  coord_cartesian()
+
+yzer2
+
+# final site map  ---------------------------------------------------------
+
+final_sitemap <- cp2 +
+  annotation_custom(grob = ggplotGrob(yzer2),
+                    xmin = 18.0, xmax = 18.2,
+                   ymin = -33.9, ymax = -34.1)
+ 
+final_sitemap
+
+```
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="A site mape showing the locations at which the morphometric measuremnets of _Ecklonia maxima_ were collected for this study", fig.height=8, fig.width=10}
+
+library(tidyverse)
+library(vegan)
+library(RColorBrewer)
+library(gridExtra)
+library(lubridate)
+library(GGally)
+library(ggpubr)
+library(ggrepel)
+
+# Load map data
+load("data/south_africa_coast.Rdata")
+load("data/sa_provinces.Rdata")
+
+
+# remove yzerfontein
+kelp_sites <- read_delim("data/sites_fin.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+kelp_sites_map <- subset(kelp_sites, !site == "Yzerfontein")
+
+# Subset into 4 regions
+west__up_site <- subset(kelp_sites, site == "Oudekraal" | site == "Bakoven")
+
+west__down_site <- subset(kelp_sites, site == "Soetwater" | site == "Olifantsbos" | site == "Slangkop" | site == "Kommetjie")
+
+east_up_site <- subset(kelp_sites, site == "Kalk_Bay" | site == "St James" | site == "St_James_N" | site == "St_James_S") 
+
+east_down_site <- subset(kelp_sites, site == "Millers`s_A" | site == "Miller`s_B" | site == "Miller`s_C" 
+                         | site == "Black_rocks" | site == "Buffels")
+
+# plot map
+ggplot(data = kelp_sites_map, aes(x = long, y = lat)) +
+  geom_polygon(data = south_africa_coast, aes(group = group), fill = "grey70") +
+  geom_path(data = sa_provinces, aes(group = group)) +
+  geom_point(data = kelp_sites_map)  +
+  coord_fixed(xlim = c(17.65, 19.5), ylim = c(-32.75, -34.6)) +
+  geom_label_repel(data = west__up_site, aes(x = long, y = lat, label = site), 
+                   size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = 0.2, segment.alpha = 0.4) +
+  geom_label_repel(data = west__down_site, aes(x = long, y = lat, label = site), 
+                   size = 3, box.padding = 0.5, nudge_x = -0.5, nudge_y = -0.2, segment.alpha = 0.4) +
+  geom_label_repel(data = east_up_site, aes(x = long, y = lat, label = site), 
+                   size = 3, box.padding = 0.5, nudge_x = 0.5, nudge_y = 0.3, segment.alpha = 0.4) +
+  geom_label_repel(data = east_down_site, aes(x = long, y = lat, label = site), 
+                   size = 3, box.padding = 0.5, nudge_x = 0.35, nudge_y = -0.15, segment.alpha = 0.4) +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+```
+
+
+\newpage
+###	Morphometric data collection 
+
+Sampling took place between March and October 2018 during low tide. The thirteen largest _Ecklonia maxima_ individuals were collected by snorkel in an area where the kelp bed was ~1m deep and in shallow water (along the shoreline). Juvenile kelp (juvenile sporophytes) of about 30cm in length were collected. After collection, various morphological and biomass measurements were recorded.
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="A table of morphological measurements, unit and procedures of _Ecklonia maxima _ that were collected.", fig.height=8, fig.width=10}
+
+library(knitr)
+
+a <- c("Primary blade length","Primary blade width","Frond length","Stipe length","Stipe circumference","Number of tufts","Epiphyte length","Frond mass","Stipe mass")
+b <- c("cm","cm","cm","cm","cm","N/A","cm","kg","kg")
+c <- c("From where the stipe widens and flattens into frond at distal end of primary blade",
+       "At maximum", "Longest frond", "From directly above the holdfast to where stipe widens and flattens into frond", "At widest point (around pneumatocyst)", "No. of points at which secondary blades branchs off primary blade", "Presence/absence", "Total mass of fronds from base of primary blade", "Total mass of stipe (see stipe length)")
+
+measurements <- data.frame(Morphological_measurement = a, Units = b, Procedure = c)
+
+kable(measurements, row.names = FALSE, caption = "A list of morphological measurements, unit and procedures of _Ecklonia maxima _ that were collected.")
+
+```
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Annotated diagram of a _Ecklonia maxima_ sporophyte", fig.height=8, fig.width=10}
+
+library(png)
+library(grid)
+
+kelp <- readPNG("kelp.png")
+grid.raster(kelp)
+
+```
+
+\newpage
+### Abiotic parameters
+
+####Temperature data
+
+The monthly shallow water temperature data was obtained from the South African Coastal Temperature Network (SACTN) web interface (https://robert-schlegel.shinyapps.io/SACTN/).The temperature dataset was a compilation of contributions made by several sources, using in situ data and digital underwater temperature recorders (UTRs). The thermal parameters used were minimum temperature, maximum temperature and mean temperature.
+
+#### Wave Parameters 
+
+All wave data, taken at three hour resolutions, were obtained from the South African Weather Service (SAWS). The wind and wave parameters measured were; wave height (hs, m), wave period (tp, s^-1), wave direction (dir, ^o), wind direction (dirw, ^o) and wind speed (spw, km/h). Short-crested waves, generated by wind into the coastal environment (@Booijetal1997) were modelled from the data using the Simulating Waves in the Nearshore (SWAN) model (@Booijetal1997). SWAN enables the removal of wave parameters from particular gridded locations in the nearshore. For this study, a 200 m alongshore resolution was used, at both the 7 and 15 meter isobaths.
+
+
+
+### Statistical Methods 
+
+The Shapiro_Wilk test for normality was performed. The morphometric data were then standardised to a mean of 0 and a standard deviation of 1 in order to easily compare variables measured on different scales.
+
+A descriptive summary of the temperature and wave data was also conducted, including statistics such as minimum, maximum, mean, and standard deviation. This was used to determine the monthly and annual climatologies of the sites sampled. These climatologies were used in the redundancy analysis (RDA) to identify the parameters of temperature and wave exposure which are the most influential in kelp morphology. RDAs help to summarise the variation in response variables (morphometric measurements), that is explained by explanatory variables (temperature and wave exposure parameters). This is achieved by performing multiple linear regressions between the response and explanatory variables. 
+
+All statistical analyses were conducted using R 3.5.1 (R Core Team 2018). 
+
+\newpage
+## Results 
+
+Frond length showed no specific pattern in geographic location among the sites (Figure 1). Both west coast and False Bay sites had variable frond lengths. Kalk Bay and Soetwater both had significantly shorter frond lengths than the other sites displayed. Olifantsbos, St James North, Yzerfontein and Oudekraal showed the largest variability in frond lengths when comparing the descriptive statistical boxplots. Frond mass however, displayed large variability at Oudekraal, St James and Yzerfontein and Kommetjie, with the former three sites having lager masses than that of Kommetjie. All other sites had relatively low variability and lighter frond mass. Sites located fairly close together such as Miller’s Point (including Miller’s A, B and C), St. James north and St. James South, and Black Rocks and Buffels, showed no significant difference in frond mass compared to each other. Stipe length displayed the most variability among sites, irrespective of the proximity of their locations. False Bay sites generally have longer stipes than sites along the west coast. Stipe mass is fairly similar across all sites. Stipe circumference is rather similar for all sites except Bakoven on the west coast and Kalk Bay in False Bay.The primary blades of E. maxima have high variability in their lengths, with longer primary blades found along the west coast, especially at olifantsbos, Oudekraal and Slangkop.
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 1: Morphological variables of _E.maxima_ collected at 1m depth.", fig.height=8, fig.width=10}
+# load libraries  
+library(tidyverse)
+library(ggpubr)
+library(dplyr) #for filter and %>%  command
+library(readr) #read csv
+library(ggplot2)
+library(vegan)
+
+# load data 
+# loading data about the morphometric properties of _Ecklonia maxima_ 
+morph <- as.tibble(read_csv("D:/honours/honours-project/data/morph_update.csv")[, -14])
+# the column epiphyte length was removed, as it was inconsistently measured at some sites, and not measured at all at other sites. 
+
+# standardise data 
+# create numerical df to be standardized 
+morph.std <- morph %>% 
+  select(-date, -site, -depth, -ind, -fertile) 
+
+morph.stand <- decostand(morph.std, method = "standardize")
+
+# create df with non numerical cols
+df_char <- morph %>% 
+  select(date:fertile)
+
+# combine standardized data with character df
+df <- cbind(df_char, morph.stand) %>% 
+  filter(depth == "deep/adult")
+
+# summarise morph 
+sum.morph <- morph %>%
+  group_by(as.factor(site)) %>%   
+  summarise(mn_fr_mass = mean(frond_mass), 
+            sd_fr_mass = sd(frond_mass),
+            mn_pri_len = mean(primary_length),
+            sd_pri_len = sd(primary_length), 
+            mn_pri_wid = mean(primary_width),
+            sd_pri_wid = sd(primary_width), 
+            mn_fr_len = mean(frond_length),
+            sd_fr_len = sd(frond_length),
+            mn_st_mass = mean(stipe_mass),
+            sd_st_mass = sd(stipe_mass), 
+            mn_st_len = mean(stipe_length),
+            sd_st_len = sd(stipe_length), 
+            mn_st_circ = mean(stipe_circ), 
+            sd_st_circ = sd(stipe_circ),
+            mn_tufts = mean(tufts), 
+            sd_tufts = sd(tufts),
+            mn_total_len = mean(total_length), 
+            sd_total_len = sd(total_length))
+
+# boxplots on standardized data 
+# convert wide data to long data 
+morph_long <- df %>% 
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)  
+
+shapiro.test(morph_long$value)
+# p-value = 2.2e-16
+
+# visualising data 
+ggplot(data = morph_long, aes(x = "", y = value, fill = site)) +
+  geom_boxplot(notch = TRUE) +
+  facet_wrap( ~ variable, scales = "free") +
+  theme_classic()
+
+```
+
+Both deep and shallow adult kelp show morphological variation between St James North and St James South for all variables, however the differences are not significant. However, all morphological variables of shallow kelp collected at Kalk Bay is significantly larger than that of adult kelp collected at 1m (Figure 2). Juvenile kelp at all sites is significantly different in primary width, stipe circumference, stipe length, stipe mass and total length. 
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 2: A comparison of the morphology of _E. maxima_ collected from three sites, at three different depths. (deep/adult collected at 1m depth, shallow/adult and shallow/juvenile collected at the shoreline).", fig.height=8, fig.width=10}
+# depth classes 
+# shallow/juvenile : juvenile E.maxima with stipe lengths of about 30cm, in very shallow water
+# shallow/adult : largest adult E.maxima individuals found in very shallow water 
+# deep/adult : largest adult E.maxima individuals found at 1m depth 
+
+compare <- cbind(df_char, morph.stand) %>% 
+  filter(date == "12-09-2018")
+
+comp_long <- compare %>%
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile) 
+
+# visualising data 
+ggplot(data = comp_long, aes(x = site, y = value)) +
+  geom_boxplot(aes(colour = depth), notch = TRUE) +
+  facet_wrap(~ variable, scales = "free") +
+  theme_classic()
+
+```
+
+The general pattern observed from figure 3, shows that kelp collected at 7m deep is larger for all variables than those collected at 1m deep. Kommetjie and Soetwater display significantly different values between depths for all variables. Buffels bay specimens are only significant in stipe length, stipe mass, frond mass and number of tufts. Oudekraal differs significantly only in stipe length and stipe mass.
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 3: Morphometric measurements of _E. Maxima_ collected at different depths. (deep/adult collected at 1m , deepest/adult collected at 7m)", fig.height=8, fig.width=10}
+# load deep water data with required sites 
+deep <- read_csv("data/trial.csv")
+
+df.deep <- deep %>% 
+  select(date:fertile)
+
+deep.std <- deep %>% 
+  select(-date, -site, -depth, -ind, -fertile)
+
+# replacing NA values with 0 
+deep.std[is.na(deep.std)] <- 0
+  
+deep.stand <- decostand(deep.std, method = "standardize")
+
+combine <- cbind(deep.stand, df.deep)
+
+comb_long <- combine %>%
+  group_by(site) %>% 
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile) 
+
+# remove Kalk Bay
+rm.kb <- combine[c(-12:-25, -152:-192),]
+
+# remove millers point 
+rm.mp <- rm.kb[c(-1:-11, -73:-114 ),]
+
+site_long <- rm.mp %>%
+  group_by(site) %>% 
+  gather(key = "variable", value = "value", -site, -ind, -date, -depth, -fertile)  
+
+ggplot(data = site_long, aes(x = site, y = value)) +
+  geom_boxplot(aes(colour = depth), notch = TRUE) +
+  facet_wrap(~ variable, scales = "free") +
+  labs(title = "Fig 3: Morphology of E. Maxima collected at different depths. (deep/adult collected at 1m , deepest/adult collected at 7m)") +
+  theme_classic()
+
+```
+
+Adult E,maxima growing at depths of 7m at Miller’s Point, differs only from 1m adults in frond length, stipe length, stipe mass, total length and number of tufts, with all these variables being larger than that of kelp collected at 1m. Sites A, B and C show no significant differences in any of the morphological variables (Figure 4). 
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 4: Morphological variables of _E. Maxima_ collected at Miller’s Point at 1m and 7m depths (deep/adult collected at 1m, deepest/adult collected at 7m).", fig.height=8, fig.width=10}
+
+mp_deep <- comb_long %>% 
+  filter(site == "Miller's Point")
+
+mp_shallow <- comb_long %>% 
+  filter(date == "04-05-2018")
+
+mp <-  rbind(mp_deep, mp_shallow)
+
+ggplot(data = mp, aes(x = site, y = value)) +
+  geom_boxplot(aes(colour = depth), notch = TRUE) +
+  facet_wrap(~ variable, scales = "free") +
+  theme_classic()
+
+```
+
+Kelp found at 7m depth have a larger variability, but are not really significantly different from adult kelp in shallower water, except for stipe length, stipe mass, total length and number of tufts. Adult kelp collected in 1m deep water are more similar in morphology to juvenile kelp collected at the shoreline (Figure 5). 
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 5: Morphology of E. Maxima collected at Kalk Bay at different depths (deep/adult collected at 1m , deepest/adult collected at 7m, shallow/adult and shallow/juvenile collected along the shoreline)", fig.height=8, fig.width=10}
+
+kb <- comb_long %>% 
+  filter(site == "Kalk_Bay")
+
+ggplot(data = kb, aes(x = site, y = value)) +
+  geom_boxplot(aes(colour = depth), notch = TRUE) +
+  facet_wrap(~ variable, scales = "free") +
+  theme_classic()
+
+```
+
+
+Temperature Climatology 
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE}
+
+# load libraries  
+library(tidyverse)
+library(ggpubr)
+library(dplyr) #for filter and %>%  command
+library(readr) #read csv
+library(ggplot2)
+library(vegan)
+library(zoo)
+
+# Complete lon/lats
+kelp_sites <- read_csv("data/sites_fin.csv")
+
+# Ecklonia
+eck_data <- as.tibble(read_csv("data/morph_update.csv")[, -14])
+
+# The SACTN monthly data
+load("data/SACTN_monthly_v4.2.Rdata")
+
+sites <-  c("Muizenberg", "Muizenberg", "Muizenberg", "Kalk Bay", "Miller's Point", "Miller's Point", "Miller's Point",
+            "Bordjies", "Buffelsbaai", "Kommetjie", "Kommetjie", "Kommetjie","Kommetjie", "Oudekraal", "Oudekraal", "Yzerfontein")
+
+
+temps <- SACTN_monthly_v4.2 %>% 
+  separate(index, c("site", "source"), "/") %>% 
+  filter(site %in% sites)
+
+# oudekraal rep for bakoven 
+oude <- temps %>% 
+  filter(site == "Oudekraal") 
+
+oudekraal <- oude
+
+oude$newcolumn<-"Bakoven"
+colnames(oude)[colnames(oude)=="newcolumn"] <- "site"
+bakoven <-  oude[,-1]
+
+# Kommetjie for slangkop, Soetwater and Olifantsbos
+kom <- temps %>% 
+  filter(site == "Kommetjie") 
+
+#kommetjie
+Kom <- kom
+
+#slangkop
+kom$newcolumn<-"Slangkop"
+colnames(kom)[colnames(kom)=="newcolumn"] <- "site"
+slangkop <-  kom[,-1]
+
+#soetwater 
+kom$newcolumn <- "Soetwater"
+colnames(kom)[colnames(kom)=="newcolumn"] <- "site"
+soet<-  kom[,-5]
+soetwater <- soet[,-1]
+
+# Olifantsbos 
+kom$newcolumn <- "Olifantsbos"
+colnames(kom)[colnames(kom)=="newcolumn"] <- "site"
+oli <- kom[,-5:-6]
+Olifantsbos <- oli[,-1]
+
+#bordjies for Black rocks 
+bord <- temps %>% 
+  filter(site == "Bordjies") 
+
+bord$newcolumn<-"Black_rocks"
+colnames(bord)[colnames(bord)=="newcolumn"] <- "site"
+black_rocks <-  bord[,-1]
+
+# Buffelsbaai rename to Buffels 
+buff <- temps %>% 
+  filter(site == "Buffelsbaai") 
+
+buff$newcolumn<-"Buffels"
+colnames(buff)[colnames(buff)=="newcolumn"] <- "site"
+buffels <-  buff[,-1]
+
+# Miller`s Point for millers A, B and C
+millers <- temps %>% 
+  filter(site == "Miller's Point") 
+
+millers$newcolumn<-"Millers_A"
+colnames(millers)[colnames(millers)=="newcolumn"] <- "site"
+millers_A <-  millers[,-1]
+
+# millers B
+millers$newcolumn<-"Millers_B"
+colnames(millers)[colnames(millers)=="newcolumn"] <- "site"
+mill_B <-  millers[,-1]
+millers_B <- mill_B[,-4]
+
+# millers C
+millers$newcolumn<-"Millers_C"
+colnames(millers)[colnames(millers)=="newcolumn"] <- "site"
+mill_C <-  millers[,-5:-6]
+millers_C <- mill_C[,-1]
+
+#Muizenberg for St James N 
+muiz <- temps %>% 
+  filter(site == "Muizenberg") 
+
+muiz$newcolumn<-"St_James_N"
+colnames(muiz)[colnames(muiz)=="newcolumn"] <- "site"
+st_james_N <-  muiz[,-1]
+
+# kalk bay for St James, and St James S
+kalk <- temps %>% 
+  filter(site == "Kalk Bay") 
+
+# change kalk bay name 
+kalk$newcolumn<-"Kalk_Bay"
+colnames(kalk)[colnames(kalk)=="newcolumn"] <- "site"
+Kalk_Bay <-  kalk[,-1]
+
+# St JAmes 
+kalk$newcolumn<-"St_James"
+colnames(kalk)[colnames(kalk)=="newcolumn"] <- "site"
+St_J <-  kalk[,-1]
+St_James <- St_J[,-4]
+
+# St JAmes S 
+kalk$newcolumn<-"St_James_S"
+colnames(kalk)[colnames(kalk)=="newcolumn"] <- "site"
+St_J_S <-  kalk[,-5:-6]
+St_James_S <- St_J_S[,-1]
+
+# yzer 
+yzer <- temps %>% 
+  filter(site == "Yzerfontein")
+
+# create new temp df with data for all sites 
+temps_sites <- rbind(bakoven, black_rocks, buffels, Kalk_Bay, Kom, millers_A, millers_B, millers_C, 
+                      Olifantsbos, oudekraal, slangkop, soetwater, St_James, st_james_N, St_James_S, yzer)
+
+
+# Annual clims
+temp_ann <- temps_sites %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(mean_temp = mean(temp, na.rm = T),
+            min_temp = min(temp, na.rm = T),
+            max_temp = max(temp, na.rm = T),
+            range_temp = range(temp, na.rm = T)[2]-range(temp, na.rm = T)[1],
+            sd_temp = sd(temp, na.rm = T)) %>% 
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = T))) %>% 
+  mutate(date = "Ann") %>% 
+  select(site, date, everything())
+
+
+# Monthly clims
+temp_monthly <- temps_sites %>% 
+  mutate(date = lubridate::month(date, label = TRUE)) %>% 
+  group_by(site, date) %>% 
+  summarise(mean_temp = mean(temp, na.rm = T),
+            min_temp = min(temp, na.rm = T),
+            max_temp = max(temp, na.rm = T),
+            range_temp = range(temp, na.rm = T)[2]-range(temp, na.rm = T)[1],
+            sd_temp = sd(temp, na.rm = T)) %>%
+  filter(date %in% c("Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")) %>% 
+  ungroup()
+
+# temperature climatology
+temp_clim <- rbind(temp_ann, temp_monthly) %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         mean_temp:sd_temp) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value)
+ 
+```
+
+```{r,echo= FALSE, message=FALSE, warning=FALSE, fig.cap= "A summary of temperature parameters, mean, max and min for the site locations at which the morphometric measurements of _E.maxima_ were collected.", fig.height=8, fig.width=10}
+# plot
+ggplot(temps_sites, aes(x = date, y = temp )) +
+  facet_wrap(~ site) +
+  geom_line(data = temp_monthly, aes(x = date, y = mean_temp, group = 1), colour = "green") +
+  geom_line(data = temp_monthly, aes(x = date, y = min_temp, group = 1), colour = "blue") +
+  geom_line(data = temp_monthly, aes(x = date, y = max_temp, group = 1), colour = "red") +
+  labs(title = "Temperature ('C)") +
+  theme_classic()
+
+```
+
+Wind and Wave Climatology 
+```{r, echo= FALSE, message=FALSE, warning=FALSE,}
+
+# writing a function for extraction of wave data 
+load_wave <- function(wave_files) {
+  site_name <- sapply(strsplit(as.character(wave_files), "/"), "[[", 3)
+  site_info <- sapply(strsplit(as.character(wave_files), "/"), "[[", 4)
+  site_info <- sapply(strsplit(site_info, ".txt"), "[[", 1)
+  site_info <- strsplit(site_info, "_")
+  site_depth <- sapply(site_info, "[[", 1)
+  site_num <- sapply(site_info, "[[", 2)
+  
+  wave <- read_table(wave_files, col_types = c("dddddd"),
+                     col_names = c("date", "hs", "tp", "dir", "dirw", "spw")) %>%
+    filter(tp != -999) %>%
+    mutate(date = as.POSIXct(as.character(date), "%Y%m%d%H%M", tz = "Africa/Johannesburg")) %>%
+    mutate(site = site_name,
+           num = site_num,
+           depth = site_depth) %>%
+    select(site, num, depth, everything()) %>% 
+    na.omit()
+  return(wave)
+}
+
+# loading wave data of selected sites 
+Bakoven <- map_dfr(dir("data/wave_data/Bakoven", 
+                       full.names = TRUE, pattern = "*.txt"), load_wave)
+Black_rocks <- map_dfr(dir("data/wave_data/Black_rocks", 
+                           full.names = TRUE, pattern = "*.txt"), load_wave)
+Buffels <- map_dfr(dir("data/wave_data/Buffels", 
+                       full.names = TRUE, pattern = "*.txt"), load_wave)
+Kalk_bay <- map_dfr(dir("data/wave_data/Kalk_Bay", 
+                        full.names = TRUE, pattern = "*.txt"), load_wave)
+Kommetjie <- map_dfr(dir("data/wave_data/Kommetjie", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+Millers_A <- map_dfr(dir("data/wave_data/Millers_A", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+Millers_B <- map_dfr(dir("data/wave_data/Millers_B", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+Millers_C <- map_dfr(dir("data/wave_data/Millers_C", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+Olifantsbos <- map_dfr(dir("data/wave_data/Olifantsbos", 
+                           full.names = TRUE, pattern = "*.txt"), load_wave)
+Oudekraal <- map_dfr(dir("data/wave_data/Oudekraal", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+Slangkop <- map_dfr(dir("data/wave_data/Slangkop", 
+                        full.names = TRUE, pattern = "*.txt"), load_wave)
+Soetwater <- map_dfr(dir("data/wave_data/Soetwater", 
+                         full.names = TRUE, pattern = "*.txt"), load_wave)
+St_James <- map_dfr(dir("data/wave_data/St_James", 
+                        full.names = TRUE, pattern = "*.txt"), load_wave)
+St_James_N <- map_dfr(dir("data/wave_data/St_James_N", 
+                          full.names = TRUE, pattern = "*.txt"), load_wave)
+St_James_S <- map_dfr(dir("data/wave_data/St_James_S", 
+                          full.names = TRUE, pattern = "*.txt"), load_wave)
+Yzerfontein <- map_dfr(dir("data/wave_data/Yzerfontein", 
+                           full.names = TRUE, pattern = "*.txt"), load_wave)
+
+
+# combine sites into one df
+wave_data <- rbind(Bakoven, Black_rocks, Buffels, Kalk_bay, Kommetjie, Millers_A, Millers_B, Millers_C, Olifantsbos, Oudekraal, Slangkop, Soetwater, St_James, St_James_N, St_James_S, Yzerfontein) 
+
+
+rm(Bakoven, Black_rocks, Buffels, Kalk_bay, Kommetjie, Millers_A, Millers_B, Millers_C, 
+   Olifantsbos, Oudekraal, Slangkop, Soetwater, St_James, St_James_N, St_James_S, Yzerfontein)
+
+# Annual climatology for the wave data
+wave_annual <- wave_data[-2:-3] %>% 
+  mutate(date = lubridate::month(date, label = T)) %>% 
+  group_by(site, date) %>% 
+  summarise_all(funs(mean = mean, sd = sd, min = min, max = max), na.rm = T) %>%
+  ungroup() %>% 
+  select(-date) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean), na.rm = T) %>% 
+  mutate(date = "Annual") %>% 
+  select(site, date, everything())
+
+# monthly climatology 
+wave_monthly <- wave_data %>% 
+  mutate(date = lubridate::month(date, label = T)) %>% 
+  group_by(site, date) %>% 
+  summarise(hs_mean = mean(hs, na.rm = T),
+            dir_min = min(dir, na.rm = T),
+            dir_max = max(dir, na.rm = T),
+            dir_mean = mean(dir, na.rm = T),
+            dir_sd = sd(dir, na.rm = T),
+            dirw_min = min(dirw, na.rm = T),
+            dirw_max = max(dirw, na.rm = T),
+            dirw_mean = mean(dirw, na.rm = T),
+            dirw_sd = sd(dirw, na.rm = T),
+            hs_min = min(hs, na.rm = T),
+            hs_max = max(hs, na.rm = T),
+            hs_sd = sd(hs, na.rm = T),
+            tp_min = min(tp, na.rm = T),
+            tp_max = max(tp, na.rm = T),
+            tp_mean = mean(tp, na.rm = T),
+            tp_sd = sd(tp, na.rm = T),
+            spw_min = min(spw, na.rm = T),
+            spw_mean = mean(spw, na.rm = T), 
+            spw_sd = sd(spw, na.rm = T), 
+            spw_max = max(spw, na.rm = T)) %>%
+  filter(date %in% c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")) %>% 
+  ungroup()
+
+# wave climatology
+
+wave_clim <- rbind(wave_monthly, wave_annual) %>% 
+  group_by(site) %>% 
+  gather(key = statistic, value = value, 
+         hs_mean:spw_max) %>% 
+  mutate(clim_stat = paste(date, statistic, sep = "_")) %>% 
+  select(-date, -statistic) %>% 
+  spread(key = clim_stat, value = value) %>% 
+  ungroup() 
+```
+
+```{r, echo= FALSE, message=FALSE, warning=FALSE, fig.cap="Wind and wave parameters at sites were the morphometric measurements of _E. maxima_ were collected.", fig.height=8, fig.width=10}
+
+  a <- ggplot(wave_monthly, aes(x = month, y = hs)) + 
+    facet_wrap(~ site) +
+    geom_line(data = wave_monthly, aes(x = date, y = hs_mean, group = 1), colour = "green") +
+    geom_line(data = wave_monthly, aes(x = date, y = hs_min, group = 1), colour = "blue") +
+    geom_line(data = wave_monthly, aes(x = date, y = hs_max, group = 1), colour = "red") +
+    labs(title = "Wave height (m)")+
+    theme_classic()
+  
+  
+  b <- ggplot(wave_monthly, aes(x = month, y = dir)) + 
+    facet_wrap(~ site) +
+    geom_line(data = wave_monthly, aes(x = date, y = dir_mean, group = 1), colour = "green") +
+    geom_line(data = wave_monthly, aes(x = date, y = dir_min, group = 1), colour = "blue") +
+    geom_line(data = wave_monthly, aes(x = date, y = dir_max, group = 1), colour = "red") +
+    labs(title = "Wave direction (^o)")+
+    theme_classic()
+  
+ c <-  ggplot(wave_monthly, aes(x = month, y = tp)) + 
+    facet_wrap(~ site) +
+    geom_line(data = wave_monthly, aes(x = date, y = tp_mean, group = 1), colour = "green") +
+    geom_line(data = wave_monthly, aes(x = date, y = tp_min, group = 1), colour = "blue") +
+    geom_line(data = wave_monthly, aes(x = date, y = tp_max, group = 1), colour = "red") +
+    labs(title = "Wave period (m/s)")+
+    theme_classic()
+
+  d <- ggplot(wave_monthly, aes(x = month, y = dirw)) + 
+    facet_wrap(~ site) +
+    geom_line(data = wave_monthly, aes(x = date, y = dirw_mean, group = 1), colour = "green") +
+    geom_line(data = wave_monthly, aes(x = date, y = dirw_min, group = 1), colour = "blue") +
+    geom_line(data = wave_monthly, aes(x = date, y = dirw_max, group = 1), colour = "red") +
+    labs(title = "Wind direction (^o)")+
+    theme_classic()
+  
+  e <- ggplot(wave_monthly, aes(x = month, y = spw)) + 
+    facet_wrap(~ site) +
+    geom_line(data = wave_monthly, aes(x = date, y = spw_mean, group = 1), colour = "green") +
+    geom_line(data = wave_monthly, aes(x = date, y = spw_min, group = 1), colour = "blue") +
+    geom_line(data = wave_monthly, aes(x = date, y = spw_max, group = 1), colour = "red") +
+    labs(title = "Wind speed (km/h)") +
+    theme_classic()
+  
+  ggarrange(a, b, c, d, e, ncol = 2)
+
+```
+
+
+Morphometric and environmental data for RDA
+```{r, echo= FALSE, message=FALSE, warning=FALSE,}
+
+# Ecklonia
+eck_mean <- eck_data %>% 
+  select(site, frond_mass:total_length) %>% 
+  group_by(site) %>% 
+  summarise_all(funs(mean(., na.rm = T)))
+
+# Merge the biotic and abiotic variables
+# Ecklonia
+eck_all <- eck_mean %>% 
+  left_join(temp_clim, by = "site") %>%
+  left_join(wave_clim, by = "site")
+
+# Hellinger-transform the morph dataset
+eck_bio <- eck_all %>% 
+  select(frond_mass:total_length) %>% 
+  decostand(method = "hellinger")
+
+eck_abio <- merge(wave_clim, temp_clim, by = c("site")) %>% 
+  select(-site) %>% 
+  decostand(method = "standardize")
+
+# standardization resulted in columns with NA values, removes these columns
+abio <- eck_abio[,c(-145,-147,-245,-247,-255)]
+
+```
+
+### RDA 
+
+The results of the RDA showed that Annual_dir_max, Annual_dir_mean, Annual_dir_min, Annual_dir_sd, Annual_dirw_max, Annual_hs_max, Annual_hs_mean, Annual_hs_min, Annual_hs_sd, Annual_tp_max, Annual_tp_mean, Annual_tp_min, Annual_tp_sd, Apr_dir_max and Apr_dir_mean are the most influential environmental factors affecting _E. maxima_ morphology, with an R^2^ value of 0.999. The adjusted R^2^ value yielded inconclusive results (NA). Only the first two canonical axes were used in the RDA; RDA1 and RDA2, explaining 57.7% and 30.3% of the variation respectively, and 88% cumulatively. The biplot scores for constraining variables, showed that annual wave standard deviation (Annual_dir_sd), annual wave period standard deviation (Annual_tp_sd), maximum annual wave direction (Annual_dir_max) and the maximum wave direction in April (Apr_dir_max) were heavily loaded along the RDA1 axis, and negatively influence stipe length. Whereas the other influential factors mentioned above, were more heavily loaded along the second RDA axis (RDA2), positively influencing primary length.
+
+```{r, fig.cap=" Figure 6: An RDA biplot for the morphometric measurements of _E. maxima_,  constrained by thermal and wave exposure parameters(environmental variables). The first two canonical axes, RDA1 and RDA2, represent the bulk of the inertia. The environmental (explanatory) variables are depicted by blue vectors extending from the origin. The morphological measurements represent the response variables, and are shown in red. The black points represent the sites, at which morphological measurements were collected.", fig.height=8, fig.width=10, fig.pos="H"}
+# run RDA 
+eck_RDA <- rda(eck_bio ~ ., data = abio)
+eck_RDA
+
+summary(eck_RDA)
+
+# Unadjusted R^2 retrieved from the rda object
+(R2 <- RsquareAdj(eck_RDA)$r.squared)
+# Adjusted R^2 retrieved from the rda object
+(R2adj <- RsquareAdj(eck_RDA)$adj.r.squared) #report this value
+
+plot(eck_RDA, scaling = 2)
+
+```
+
+\newpage
+## Discussion
+
+In this study, we aimed to determine how, or rather which aspects of temperature and wave parameters influence the morphology of E. maxima in shallow water. Sporophytes of E. Maxima were collected in the central parts of its geographical range, at sites with variable temperature and wave exposure regimes. Previous studies have shown that temperature is a driver of the geographic distribution of most marine organisms, including kelp (Bolton 2010). However, there is a strong consensus among biologists, that wave action is responsible for the morphological variation found within kelps (Gerard and Mann, 1979, Molloy and Bolton, 1996, Hurd, 2000, Wernberg and Thomsen, 2005).  Our results show that wave parameters are the most influential aspects of morphological variation within E. Maxima, especially parameters around the mean of annual wave direction, annual wave height, and annual wave period. Annual maximum wind direction and the mean and maximum wave direction in April were also important in influencing the morphology of  E.maxima in shallow water.
+
+Although temperature is the determining factor of the distribution of kelp (@Bolton2010), temperature parameters had no influence whatsoever on the morphology of _E. maxima_. Temperature shows more variation at sites in False Bay, especially during summer when temperatures can reach highs of 24oC. Maximum temperatures during summer coincides with the peak of the upwelling season (Velimirov, B., Field, J. G., Griffiths, C. L., Zoutendyk, P. 1997) bringing nutrients to the surface. South easterly winds are stronger during summer months, blowing the warm Agulhas current waters into the bay. This occurrence has a strong effect on the intensity of wave action and wave height within False Bay.  West coast sites experience fairly constant temperatures throughout the year. The unique topography of Cape point shelters the west coast sites from this strong prevailing wind during summer Minimum temperatures were recorded between the winter months of June and September, when the first south-easterly wind of the season occurs, blowing the coastal waters offshore (Velimirov, B., Field, J. G., Griffiths, C. L., Zoutendyk, P. 1997). Unseasonal upwelling occurs during this time, when the south-easter blows for short periods of time (Velimirov, B., Field, J. G., Griffiths, C. L., Zoutendyk, P. 1997).
+
+After thorough analysis between kelps in exposed and sheltered sites, Fowler-Walker, Wernberg and Connell (2006) determined that morphological variation is a plastic trait, which kelps have developed in response to their local environment. When comparing morphological variables among sites, it is evident that there are clear patterns distinguishing False Bay sites, to those along the West Coast. Primary blade length and stipe length are two variables where these patterns are clearly visible (figure 1). Sites in the False Bay region generally have shorter primary blades and, longer stipe lengths. This could be in response to environmental conditions, as False Bay is more exposed to the prevailing south easterly winds, resulting in more extreme wave action.  Increased stipe lengths is thought to be a morphological response to light limitation due to crowding in kelp beds (Hymanson et al., 1990; Holbrook et al., 1991; Sjøtun and Fredriksen, 1995). Longer stipe lengths, also allow kelp to be more flexible and adopt a “go with the flow” style of living, reducing the effects of wind-driven water motion (Gaylord and Denny 1997).  It is however less beneficial in shallower waters and areas experiencing large wave heights (Gaylord and Denny 1997).
+
+Blade morphology is highly variable in kelp species, as they adapt to local wave regimes (Wernberg and Vanderklift 2010, Roberson and Coyer 2004, Wernberg and Thomsen 2005). Morphologies include long, flat blades in high wave action areas (Koehl et al 2008), which decrease drag (Denny 1988) to prevent breakage (Johnson and Koehl, 1994, Blanchette et al. 2002) and lower rates of dislodgement (Hurd, 2000). 
+
+Kelps in sheltered localities, along the West Coast show similar trends to studies done by Gerard and Mann (1979), Wheeler (1980) and Fowler-Walker, Wernberg and Connell (2006), where kelp sporophytes have adapted  by increasing the surface area of their secondary fronds, characterised by wide, rough blades in shallow, low wave action areas (Koehl et al 2008; Levy 2014), which increase turbulence around the blade, decreasing the boundary layer in order to increase nutrient uptake (Wheeler 1980, Roberson and Coyer 2004, Levy 2014) and receive optimal light for photosynthesis.
+
+Differences in growth rates and morphology are related to the position of the kelp within the canopy, as well as a seasonal variations, because kelps grow faster in summer than in winter (@Stewartetal2009). This is reiterated by the peak of upwelling supplying nutrients to the kelp, and wave action removing waste products from the surface of the kelp, promoting growth (Westlake, 1967). Adult sporophytes collected in shallow water are significantly larger than adult kelps collected in 1m deep water (figure 2). This is a result of the dampening effect kelp canopies have on current velocities and waves along the shore (Koehl and Alberte 1988; Dudgeon and Johnson 1992; Jackson 1997; Koehl 2000; Gaylord et al. 2007). 
+
+When comparing sporohytes collected in water as deep as 7m (Figures 3 and 4), it is important to note that these kelps are usually below the surface of the water. Thus they are not in the direct path of intense wave action, and the risk of dislodgement and/or breakage, is far less than for that of kelps at 1m depth. Kelps in deeper water invest more of their energy into stipe length, stipe mass and frond lengths, in order to compromise for the lack of light penetration, evident at Buffels and Miller’s Point which are exposed to semi exposed sites. Kelps collected at the West coast sites of Kommetjie and Soetwater (Figure 3), are more invested in morphologies that increases surface area to maximise nutrient uptake.
+
+Numerous tudies have shown that wave exposure is the most commonly identified cause of morphological variation in kelps (Gerard and Mann, 1979; Cousens, 1982; Cheshire and Hallam, 1988; Molloy and Bolton, 1996; Blanchette et al., 2002; Roberson and Coyer, 2004; Hurd, 2000, Wernberg and Thomsen, 2005). Wave exposure comprises many parameters including, height, direction, speed, period and wind speed and wind direction. So it is assumed that morphology responds differently to each parameter within the hydrodynamic environment (Wernberg and Thomsen, 2005). Although, it needs to be taken into account that site-specific factors such as depth, (Molloy and Bolton, 1996), grazing (Kalvas and Kautsky, 1993) and nutrient levels (Blanchette et al., 2002) also somewhat influence kelp morphology. Deeper kelps are however less affected by wave action than those occurring in shallower areas (Velimirov, B., Field, J. G., Griffiths, C. L., Zoutendyk, P. 1997). 
+
+The RDA showed annual maximum wave height is one of the most influential parameters on _E. maxima_ morphology. West coast sites tend to have larger waves, especially in winter. This has allowed _E. maxima_ to adapt to these harsh conditions by developing larger primary blades that can withstand intense wave action. Stipe circumference is also larger at these sites in order for kelp to remain buoyant and more flexible. Another possible reason for the larger morphologies in this location is to maximise the uptake of nutrients which comes with the intense upwelling. Therefore, fronds become longer, the primary blades become wider and the thalli in general are sturdier. 
+
+Frond mass was explained by the standard deviation of the annual wave direction. This is another technique of _E. maxima_ to become sturdier and prevent dislodgement or breakage. When wave direction changes from the south easterly, to a more northerly direction, the sites along the west coast feels the full effects. The cape point headland shelters false bay in the same way that the west coast sites are sheltered from the summer south easterly. 
+
+Kelps are an important indicator of change as they are extremely responsive to environmental conditions, thus with the looming threat of climate change and resulting increase of sea surface temperatures, it is predicted that geographic distribution will be shifted and fairly reduced (Muller et al 2009, Merzouk 2011). Kelps have an impact on community structure (Steneck et al 2002), so the impacts of global warming and climate change will have a cascading effect throughout temperate marine ecosystems (Wernberg, Thomsen and Tuya et al 2010). Consequences include possible loss of fragmentation of kelp habitats, causing a loss in biodiversity within kelp beds and its surrounds (Wernberg, Thomsen and Tuya et al 2010).
+
+\newpage
+## Conclusions
+
+The results of the RDA showed no temperature parameters to be influential in the morphology of shallow water E. maxima. The wave exposure parameters with the most influence were the parameters around the mean of annual wave direction, annual wave height, and annual wave period. Annual maximum wind direction and April’s mean and maximum wave direction were also important factors. Although it is important to note that a number of biological factors also play a role in kelp morphology. Kelp are keystone species that are extremely responsive to environmental change, and therefore global warming and climate change will have cascading effects on the community structure around and within kelp forests. 
+
+Limitations of this study include a poor representation of Ecklonia maxima’s geographic distribution. More sites needed to be sampled, up to and including its eastern and western boundaries, De Hoop and St Helena Bay respectively. For depth comparison analysis, more sites needed to be compared at the four different depths mentioned in this study, in order to achieve significant results. Future studies should include morphological measurements of secondary blade width and measurements surrounding holdfast structure, and traits representing flexibility and strength.
+
+Wave direction, wave height and wave period are the most important wave exposure parameters in the morphological variation of Ecklonia maxima around the south west coast of South Africa. 
+
+## Acknowledgements
+
+Firstly I would like to thank my supervisor, Prof. AJ Smit, for guiding me through this year, and for sharing his extensive knowledge of kelp and love for R with me. To Ross Coppin, my co-supervisor, I am beyond grateful for all the pointers and words of encouragement when things got too much. A big thank you to Team Kelp, for sacrificing their valuable time to help me with sampling, obtaining the temperature and wave data as well as the R analyses, it is greatly appreciated. A special thank you to Carlin Landsberg and Amieroh Abrahams, you ladies have made this honours journey so much more bearable and a lot of fun, especially when we were seeing geom_flames. Thank you to my family and friends, for their unfailing love and support, and words of encouragement. Thank you to the Department of Biodiversity and Conservation Biology at the University of the Western Cape; especially the honours class of 2018, it has been a privilege being surrounded by such enthusiastic biologists. Finally, I would like to thank the NRF for providing me with funding to complete this project. 
+
+\newpage
+## References 
